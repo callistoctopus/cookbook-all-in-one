@@ -1,0 +1,6 @@
+#从Windows系统连接Linux系统
+Putty
+X-Shell
+
+#从Windows向linux拷贝文件
+pscp <src> <user>@<host>:<dst>
