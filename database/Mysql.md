@@ -10,4 +10,4 @@ BIT数据类型保存位字段值，并且支持MyISAM、MEMORY、InnoDB和BDB�
 
 作为SQL标准的扩展，MySQL也支持整数类型TINYINT、MEDIUMINT和BIGINT。下面的表显示了需要的每个整数类型的存储和范围。
 
-![image](https://github.com/virtualspacex/cookbook/blob/master/database/img/mysqlDataType.png)
+![image](https://github.com/virtualspacex/cookbook/blob/master/database/img/mysqldatatype.jpg)
