@@ -11,3 +11,11 @@
 # VisualVM官网
 
 https://visualvm.github.io/
+
+# SPI
+
+**API**（Application Programming Interface）在大多数情况下，都是实现方制定接口并完成对接口的实现，调用方仅仅依赖接口调用，且无权选择不同实现。 从使用人员上来说，API 直接被应用开发人员使用。  
+**SPI** （Service Provider Interface）是调用方来制定接口规范，提供给外部来实现，调用方在调用时则选择自己需要的外部实现。  从使用人员上来说，SPI 被框架扩展人员使用。
+
+https://www.cnblogs.com/jy107600/p/11464985.html
+
