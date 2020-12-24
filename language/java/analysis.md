@@ -19,3 +19,11 @@ https://visualvm.github.io/
 
 https://www.cnblogs.com/jy107600/p/11464985.html
 
+编译期注解处理器
+
+# JNI机制
+
+# 自定义ClassLoader
+
+由于双亲委托机制，会由应用类加载器加载
+如果加载的类，不在classpath里，意思就是应用类加载器加载不了，才会由此自定义加载器加载
