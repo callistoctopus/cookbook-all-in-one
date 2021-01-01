@@ -1,7 +1,7 @@
 <!--
  * @Author: keiki
  * @Date: 2020-12-21 10:47:46
- * @LastEditTime: 2020-12-29 16:19:39
+ * @LastEditTime: 2021-01-01 15:17:42
  * @LastEditors: keiki
  * @Description: 
 -->
@@ -36,11 +36,11 @@ https://www.cnblogs.com/jy107600/p/11464985.html
 如果加载的类，不在classpath里，意思就是应用类加载器加载不了，才会由此自定义加载器加载
 
 # java se 8 doc
-https://docs.oracle.com/javase/8/docs/index.html
+https://docs.oracle.com/javase/8/docs/index.html  
 https://docs.oracle.com/javase/8/docs/api/
 
 # java ee 7 doc
-https://docs.oracle.com/javaee/7/tutorial/index.html
+https://docs.oracle.com/javaee/7/tutorial/index.html  
 https://docs.oracle.com/javaee/7/api/toc.htm
 
 # Oracle Doc
