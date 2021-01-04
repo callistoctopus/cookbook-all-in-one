@@ -37,8 +37,10 @@
 
 ## 抓包工具
 * **Wireshark**  
-  https://www.wireshark.org/download.html
-
+  https://www.wireshark.org/download.html  
+  问题解决参考：  
+  https://www.cnblogs.com/lsdb/p/7144605.html
+  
 ## 虚拟机工具
 * **VMware**  
   https://www.vmware.com/

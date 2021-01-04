@@ -1,4 +1,3 @@
-
 ## Oracle 官网
 https://docs.oracle.com/ 
 
@@ -31,7 +30,14 @@ https://visualvm.github.io/
 -Dcom.sun.management.jmxremote.ssl=false 
 -Dcom.sun.management.jmxremote.authenticate=false  
 ```
+***
+## 指定内存大小
+```
+java -jar -Xms1024m -Xmx1536m -XX:PermSize=128M -XX:MaxPermSize=256M car.jar
+```
+1、**堆内存**：最小1024M(-Xms1024m)，最大1536M(-Xmx1536m)。（对象使用的内存）
 
+2、**永久内存**：最小128M(-XX:PermSize=128M)，最大256M(-XX:MaxPermSize=256M)。（类使用的内存，PermGen）
 ***
 
 ## SPI
@@ -53,3 +59,8 @@ https://www.cnblogs.com/jy107600/p/11464985.html
 
 由于双亲委托机制，会由应用类加载器加载
 如果加载的类，不在classpath里，意思就是应用类加载器加载不了，才会由此自定义加载器加载
+
+*** 
+
+## 设计模式
+http://c.biancheng.net/design_pattern/  
