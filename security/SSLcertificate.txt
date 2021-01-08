@@ -1,0 +1,129 @@
+ keytool -export -alias mykey -keystore D:\home\mykey.p12 -storetype PKCS12 -storepass password -rfc -file D:\home\mykey.cer 
+ 
+keytool -genkey -v -alias server -keyalg RSA -keystore server.keystore -validity 36500
+keytool -keystore server.keystore -export -alias server -file server.cer
+
+
+keytool -genkeypair -alias root -keyalg RSA -keystore root.keystore
+keytool -exportcert -keystore root.keystore -file root.cer -alias root
+
+keytool -genkeypair -alias sej -keyalg RSA -keystore sej.keystore
+keytool -certreq -alias sej -keystore sej.keystore -file sej.csr
+keytool -gencert -alias root -keystore root.keystore -infile sej.csr -outfile sej.cer
+
+keytool -list -keystore server.keystore
+
+server,2021/01/08, PrivateKeyEntry, 
+証明書のフィンガプリント(SHA1): 0D:95:77:51:58:EE:55:7A:B5:AF:11:E4:5A:A6:6E:56:9F:BE:33:BE
+
+root,2021/01/08, PrivateKeyEntry, 
+証明書のフィンガプリント(SHA1): BE:21:03:2B:DD:60:B3:D2:76:83:53:DE:42:00:6E:12:35:78:66:97
+
+keytool -genkeypair -alias rootca -keyalg RSA -keystore rootca.keystore
+keytool -exportcert -keystore rootca.keystore -file rootca.cer -alias rootca
+
+keytool -genkeypair -alias sej -keyalg RSA -keystore sej.keystore
+keytool -certreq -alias sej -keystore sej.keystore -file sej.csr
+keytool -gencert -alias root -keystore root.keystore -infile sej.csr -outfile sej.cer
+
+keytool -importcert -alias baidu -file baidu.cer
+
+====================================================================
+keytool -genkey -v -alias tomcat -keyalg RSA -keystore tomcat.keystore -validity 36500
+
+keytool  -genkey -v -alias  client -keyalg RSA -storetype PKCS12 -keystore client.p12
+
+keytool -export -alias client -keystore client.p12 -storetype PKCS12 -storepass #88hzfuji -rfc -file clientforserver.cer 
+
+keytool -import -v -file clientforserver.cer -keystore tomcat.keystore
+
+keytool -keystore tomcat.keystore -export -alias tomcat -file CA.cer
+
+=====================================================================
+//创建根证书库
+keytool -genkey -alias key_basic -keyalg RSA -validity 365 -keystore basic.keystore 
+
+===
+//创建客户端证书库
+keytool -genkey -alias key_client -keyalg RSA -validity 365 -keystore client.keystore
+===
+keytool -genkey -alias key_client -keyalg RSA -storetype PKCS12 -keystore client.p12
+===
+
+//创建服务器证书库
+keytool -genkey -alias key_server -keyalg RSA -validity 365 -keystore server.keystore 
+
+//导出根证书
+keytool -export -v -alias key_basic -keystore basic.keystore -file basic.cer 
+
+
+
+//服务器发起请求
+keytool -certreq -alias key_server -keystore server.keystore -file server_req.csr 
+
+===
+//客户端发起请求
+keytool -certreq -alias key_client -keystore client.keystore -file client_req.csr
+===
+keytool -certreq -alias key_client -keystore client.p12 -file client_req.csr
+===
+
+
+//根证书签名服务器请求
+keytool -gencert -v -alias key_basic -infile server_req.csr -outfile res_server.cer -keystore basic.keystore
+
+//根证书签名客户端请求
+keytool -gencert -v -alias key_basic -infile client_req.csr -outfile res_client.cer -keystore basic.keystore
+
+
+//服务器添加根证书
+keytool -importcert -v -alias key_basic -file basic.cer -keystore server.keystore
+
+===
+//客户端添加根证书
+keytool -importcert -v -alias key_basic -file basic.cer -keystore client.keystore 
+===
+keytool -importcert -v -alias key_basic -file basic.cer -keystore client.p12
+===
+
+//服务器添加签名文件
+keytool -importcert -v -alias key_server -file res_server.cer -keystore server.keystore 
+
+===
+//客户端添加签名文件
+keytool -importcert -v -alias key_client -file res_client.cer -keystore client.keystore 
+===
+keytool -importcert -v -alias key_client -file res_client.cer -keystore client.p12
+===
+
+===
+//客户端导出cer
+keytool -export -v -alias key_client -keystore client.keystore -file client.cer
+===
+keytool -export -v -alias key_client -keystore client.p12 -file client.cer
+===
+
+===
+//客户端cer创建临时证书库
+keytool -importcert -v -alias client_temp -keyalg RSA -keystore client_temp.keystore -file client.cer
+
+//客户端临时证书库导出p12
+keytool -importkeystore -v -srcalias client_temp -destalias client -srckeystore client_temp.keystore -destkeystore client.p12  -srcstoretype jks -deststoretype pkcs12 
+===
+
+//服务器证书库添加信任客户端证书
+keytool -importcert -alias key_client -keystore server.keystore -file client.cer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
