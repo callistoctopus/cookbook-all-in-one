@@ -1,0 +1,129 @@
+
+openssl genrsa -out server.key 1024
+
+openssl req -new -out server.csr -key server.key
+
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+
+openssl pkcs12 -export -clcerts -in server.crt -inkey server.key -out server.p12
+
+====================================================================================
+
+#生成根证书私钥(key文件)                                                                                                   
+openssl genrsa -out ca.key 2048      
+                                                                                  
+#生成根证书签发申请文件(csr文件)                                                                                           
+openssl req -new -key ca.key -out ca.csr -subj "/C=CN/ST=zj/L=hz/O=fuji/OU=hzfuji/CN=SEJ CA"  
+ 
+#自签发根证书(cer文件)                                                                                                     
+openssl x509 -req -days 365 -sha1 -extensions v3_ca -signkey ca.key -in ca.csr -out ca.cer
+
+
+#生成服务端私钥                                                                                                            
+openssl genrsa -out server.key 2048  
+                                                                                        
+#生成证书请求文件                                                                                                          
+openssl req -new -key server.key -out server.csr -subj "/C=CN/ST=zj/L=hz/O=fuji/OU=hzfuji/CN=10.225.143.145"
+
+#使用根证书签发服务端证书                                                                                                  
+openssl x509 -req -days 365 -sha1 -extensions v3_req -CA ca.cer -CAkey ca.key -CAserial ca.srl -CAcreateserial -in server.csr -out server.cer
+
+#使用CA证书验证server端证书                                                                                                
+openssl verify -CAfile ca.cer  server.cer
+
+====↑↑↑服务端证书↑↑↑======
+
+openssl pkcs12 -export -inkey client.key -in client.cer -out client.p12
+
+=========================
+
+openssl genrsa -out client.key 2048
+
+openssl req -new -key client.key -out client.csr -subj "/C=CN/ST=zj/L=hz/O=fuji/OU=hzfuji/CN=gui-qi"
+
+openssl x509 -req -days 365 -sha1 -extensions v3_req -CA ca.cer -CAkey ca.key -CAserial ca.srl -CAcreateserial -in client.csr -out client.cer
+
+openssl verify -CAfile ca.cer  client.cer
+
+=========================
+
+server {
+        listen       8082 ssl;
+		#listen       8081;
+        server_name  localhost;
+		
+		ssl_certificate      ../crt/server.cer;
+		ssl_certificate_key  ../crt/server.key;
+		
+		ssl_protocols SSLv2 SSLv3 TLSv1;
+		
+		ssl_session_cache    shared:SSL:1m;
+		ssl_session_timeout  5m;
+		
+		ssl_ciphers  HIGH:!aNULL:!MD5;
+		ssl_prefer_server_ciphers  on;
+		
+		ssl_client_certificate ../crt/ca.cer;
+		
+		ssl_verify_client on;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+		
+		#set $domain $1;
+
+        location / {
+			proxy_pass http://192.168.168.202:80;
+        }
+		
+		#location /puma/ {
+		#	proxy_pass http://192.168.168.202:80/;
+        #}
+		#
+		#location /assets/ {
+		#	proxy_pass http://192.168.168.202:80/assets/;
+        #}
+		#
+		#location /anthorization/ {
+		#	proxy_pass http://192.168.168.202:80/anthorization/;
+        #}
+		
+		location /tomcat/ {
+			proxy_pass http://localhost:8080/;
+        }
+
+        #error_page  404              /404.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+        #
+        #location ~ \.php$ {
+        #    proxy_pass   http://127.0.0.1;
+        #}
+
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        #location ~ \.php$ {
+        #    root           html;
+        #    fastcgi_pass   127.0.0.1:9000;
+        #    fastcgi_index  index.php;
+        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+        #    include        fastcgi_params;
+        #}
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #    deny  all;
+        #}
+    }
+
+
