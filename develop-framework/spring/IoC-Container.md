@@ -84,7 +84,7 @@ In XML-based configuration metadata, you can use the `<alias/>` element to accom
 ```
 
 ## Instantiating Beans
-If you use XML-based configuration metadata, you specify the type (or class) of object that is to be instantiated in the `class` attribute of the **\<bean/>** element. This class attribute (which, internally, is a Class property on a BeanDefinition instance) is usually mandatory. 
+If you use XML-based configuration metadata, you specify the type (or class) of object that is to be instantiated in the `class` attribute of the **\<bean/>** element. This class attribute (which, i*nternally, is a Class property on a BeanDefinition instance) is usually mandatory.* 
 
 **Inner class names**  
 *if you have a class called SomeThing in the com.example package, and this SomeThing class has a static nested class called OtherThing, the value of the class attribute on a bean definition would be com.example.SomeThing$OtherThing.*
