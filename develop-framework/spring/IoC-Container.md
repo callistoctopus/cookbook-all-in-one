@@ -1,14 +1,14 @@
-## Introduction to the Spring IoC Container and Beans
+# Introduction to the Spring IoC Container and Beans
 
 The **org.springframework.beans** and **org.springframework.context** packages are the basis for Spring Framework’s IoC container. The ***BeanFactory*** interface provides an advanced configuration mechanism capable of managing any type of object. ***ApplicationContext*** is a sub-interface of BeanFactory.
 
 In Spring, the objects that form the backbone of your application and that are managed by the Spring IoC container are called ***beans***. A bean is an object that is instantiated, assembled, and managed by a Spring IoC container
 
-## Container Overview
+# Container Overview
 
 Several implementations of the **ApplicationContext** interface are supplied with Spring. In stand-alone applications, it is common to create an instance of ***ClassPathXmlApplicationContext*** or ***FileSystemXmlApplicationContext***. 
 
-### Configuration Metadata
+## Configuration Metadata
 
 Spring configuration consists of at least one and typically more than one bean definition that the container must manage. **XML-based** configuration metadata configures these beans as `<bean/>` elements inside a top-level `<beans/>` element. Java configuration typically uses `@Bean`-annotated methods within a `@Configuration` class.
 
@@ -33,7 +33,7 @@ Spring configuration consists of at least one and typically more than one bean d
 </beans>
 ```
 
-### Instantiating a Container
+## Instantiating a Container
 
 ```
 ApplicationContext context = new ClassPathXmlApplicationContext("services.xml", "daos.xml");
@@ -51,7 +51,7 @@ You can use the application context constructor to load bean definitions from al
 </beans>
 ```
 It is possible, but not recommended, to reference files in parent directories using a relative "../" path. 
-### Using the Container
+## Using the Container
 
 The **ApplicationContext** is the interface for an advanced factory capable of maintaining a registry of different beans and their dependencies. By using the method `T getBean(String name, Class<T> requiredType)`, you can retrieve instances of your beans.
 ```
@@ -65,15 +65,15 @@ PetStoreService service = context.getBean("petStore", PetStoreService.class);
 List<String> userList = service.getUsernameList();
 ```
 
-## Bean Overview
-### Naming Beans
+# Bean Overview
+## Naming Beans
 In XML-based configuration metadata, you use the **id** attribute, the **name** attribute, or both to specify the bean identifiers. The `id` attribute lets you specify exactly one id. Conventionally, these names are alphanumeric ('myBean', 'someService', etc.), but they can contain special characters as well. If you want to introduce other aliases for the bean, you can also specify them in the `name` attribute, separated by a comma (,), semicolon (;), or white space. 
 
 Naming beans consistently makes your configuration easier to read and understand. 
 
 With **component scanning** in the classpath, Spring generates bean names for unnamed components, following the rules described earlier: **essentially, taking the simple class name and turning its initial character to lower-case.**
 
-### Aliasing a Bean outside the Bean Definition
+## Aliasing a Bean outside the Bean Definition
 
 Specifying all aliases where the bean is actually defined is not always adequate, however. It is sometimes desirable to introduce an alias for a bean that is defined elsewhere. 
 
@@ -83,5 +83,10 @@ In XML-based configuration metadata, you can use the `<alias/>` element to accom
 <alias name="myApp-dataSource" alias="subsystemB-dataSource"/>
 ```
 
-### Instantiating Beans
+## Instantiating Beans
+If you use XML-based configuration metadata, you specify the type (or class) of object that is to be instantiated in the `class` attribute of the **\<bean/>** element. This class attribute (which, internally, is a Class property on a BeanDefinition instance) is usually mandatory. 
 
+**Inner class names**  
+*if you have a class called SomeThing in the com.example package, and this SomeThing class has a static nested class called OtherThing, the value of the class attribute on a bean definition would be com.example.SomeThing$OtherThing.*
+
+### Instantiation with a Constructor
