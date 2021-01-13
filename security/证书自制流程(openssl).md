@@ -1,4 +1,29 @@
+# 证书自制流程
+1. 模拟证书颁发中心(CA)  
+  · 创建根证书库(自签)(包含私钥和自签证书)  
+  · 导出证书(公钥)
 
+2. 待认证的端末生成请求证书(公钥)  
+   · 创建服务端证书库(包含私钥和自签证书)  
+   · 创建客户端证书库(包含私钥和自签证书)  
+   · 服务端发起证书认证请求(公钥)  
+   · 客户端发起证书认证请求(公钥)
+
+3. 模拟证书颁发中心认证请求证书(用CA私钥对请求证书(公钥)签名)  
+   · 根证书颁发(签名认证)服务端请求  
+   · 根证书颁发(签名认证)客户端请求
+
+4. 将已颁发的证书添加到发出请求的证书库  
+   · 服务端证书库添加根证书  
+   · 客户端证书库添加根证书  
+   · 服务端添加已认证的服务端证书  
+   · 客户端添加已认证的客户端证书 
+
+5. 端末间相互信任  
+   · 服务端信任客户端  
+   · 客户端信任服务端  
+
+***
 openssl genrsa -out server.key 1024
 
 openssl req -new -out server.csr -key server.key
@@ -7,49 +32,72 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 
 openssl pkcs12 -export -clcerts -in server.crt -inkey server.key -out server.p12
 
-====================================================================================
+## 模拟证书颁发中心(CA) 
 
-#生成根证书私钥(key文件)                                                                                                   
+### 生成根证书私钥(key文件)  
+```                                         
 openssl genrsa -out ca.key 2048      
-                                                                                  
-#生成根证书签发申请文件(csr文件)                                                                                           
-openssl req -new -key ca.key -out ca.csr -subj "/C=CN/ST=zj/L=hz/O=fuji/OU=hzfuji/CN=SEJ CA"  
- 
-#自签发根证书(cer文件)                                                                                                     
+```                       
+### 生成根证书签发申请文件(csr文件) 
+```
+openssl req -new -key ca.key -out ca.csr -subj "/C=CN/ST=zj/L=hz/O=fuji/OU=hzfuji/CN=SEJ CA" 
+``` 
+### 自签发根证书(cer文件)
+```
 openssl x509 -req -days 365 -sha1 -extensions v3_ca -signkey ca.key -in ca.csr -out ca.cer
-
-
-#生成服务端私钥                                                                                                            
+```
+***
+## 待认证的端末生成请求证书(公钥)
+### 生成服务端私钥
+```
 openssl genrsa -out server.key 2048  
-                                                                                        
-#生成证书请求文件                                                                                                          
+```
+### 生成证书请求文件
+```
 openssl req -new -key server.key -out server.csr -subj "/C=CN/ST=zj/L=hz/O=fuji/OU=hzfuji/CN=10.225.143.145"
+```
 
-#使用根证书签发服务端证书                                                                                                  
-openssl x509 -req -days 365 -sha1 -extensions v3_req -CA ca.cer -CAkey ca.key -CAserial ca.srl -CAcreateserial -in server.csr -out server.cer
-
-#使用CA证书验证server端证书                                                                                                
-openssl verify -CAfile ca.cer  server.cer
-
-====↑↑↑服务端证书↑↑↑======
-
-openssl pkcs12 -export -inkey client.key -in client.cer -out client.p12
-
-=========================
-
+### 生成客户端私钥
+```
 openssl genrsa -out client.key 2048
-
+```
+### 生成证书请求文件
+```
 openssl req -new -key client.key -out client.csr -subj "/C=CN/ST=zj/L=hz/O=fuji/OU=hzfuji/CN=gui-qi"
+```
+***
+## 模拟证书颁发中心认证请求证书(用CA私钥对请求证书(公钥)签名)  
+## 使用根证书签发服务端证书
+```
+openssl x509 -req -days 365 -sha1 -extensions v3_req -CA ca.cer -CAkey ca.key -CAserial ca.srl -CAcreateserial -in server.csr -out server.cer
+```
+### 使用CA证书验证server端证书
+```
+openssl verify -CAfile ca.cer  server.cer
+```
 
+## 使用根证书签发客户端证书
+```
 openssl x509 -req -days 365 -sha1 -extensions v3_req -CA ca.cer -CAkey ca.key -CAserial ca.srl -CAcreateserial -in client.csr -out client.cer
+```
 
+### 使用CA证书验证client端证书
+```
 openssl verify -CAfile ca.cer  client.cer
+```
+***
 
-=========================
+## 端末间相互信任 
 
+### 生成浏览器接受的证书
+```
+openssl pkcs12 -export -inkey client.key -in client.cer -out client.p12
+```
+### 服务端配置（nginx）
+```
 server {
-        listen       8082 ssl;
 		#listen       8081;
+        listen       8082 ssl;
         server_name  localhost;
 		
 		ssl_certificate      ../crt/server.cer;
@@ -67,27 +115,9 @@ server {
 		
 		ssl_verify_client on;
 
-        #charset koi8-r;
-
-        #access_log  logs/host.access.log  main;
-		
-		#set $domain $1;
-
         location / {
 			proxy_pass http://192.168.168.202:80;
         }
-		
-		#location /puma/ {
-		#	proxy_pass http://192.168.168.202:80/;
-        #}
-		#
-		#location /assets/ {
-		#	proxy_pass http://192.168.168.202:80/assets/;
-        #}
-		#
-		#location /anthorization/ {
-		#	proxy_pass http://192.168.168.202:80/anthorization/;
-        #}
 		
 		location /tomcat/ {
 			proxy_pass http://localhost:8080/;
@@ -125,5 +155,6 @@ server {
         #    deny  all;
         #}
     }
+```
 
 
