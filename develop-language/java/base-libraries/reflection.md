@@ -244,3 +244,125 @@ The method `Field.getModifiers()` can be used to return the integer representing
 `Method.getGenericParameterTypes()`  
 `Method.getExceptionTypes()`  
 `Method.getGenericExceptionTypes()`  
+
+### Obtaining Names of Method Parameters
+
+You can obtain the names of the formal parameters of any method or constructor with the method `java.lang.reflect.Executable.getParameters`.  
+**However, .class files do not store formal parameter names by default**. This is because many tools that produce and consume class files may not expect the larger static and dynamic footprint of .class files that contain parameter names. In particular, these tools would have to handle larger .class files, and the Java Virtual Machine (JVM) would use more memory.
+
+To store formal parameter names in a particular .class file, and thus enable the Reflection API to retrieve formal parameter names, compile the source file with the `-parameters` option to the javac compiler.
+
+### Retrieving and Parsing Method Modifiers
+
+There a several modifiers that may be part of a method declaration:
+
+* Access modifiers: public, protected, and private
+* Modifier restricting to one instance: static
+* Modifier prohibiting value modification: final
+* Modifier requiring override: abstract
+* Modifier preventing reentrancy: synchronized
+* Modifier indicating implementation in another programming language:native
+* Modifier forcing strict floating point behavior: strictfp
+* Annotations
+
+`Method.getModifiers()`  
+lists the modifiers of a method with a given name. 
+
+`Method.isSynthetic()`  
+whether the method is synthetic (compiler-generated)
+
+`Method.isVarArgs()`  
+of variable arity
+
+`Method.isBridge()`  
+or a bridge method (compiler-generated to support generic interfaces)
+
+### Invoking Methods
+
+Reflection provides a means for invoking methods on a class. Typically, this would only be necessary if it is not possible to cast an instance of the class to the desired type in non-reflective code. Methods are invoked with `java.lang.reflect.Method.invoke()`. The **first argument** is the **object instance** on which this particular method is to be invoked. (*If the method is static, the first argument should be null.*) Subsequent arguments are the method's parameters. If the underlying method throws an exception, it will be wrapped by an `java.lang.reflect.InvocationTargetException`. The method's original exception may be retrieved using the exception chaining mechanism's `InvocationTargetException.getCause()` method.
+```
+Object o = m.invoke(t, new Locale(args[1], args[2], args[3]));
+```
+```
+main.invoke(null, (Object)mainArgs);
+```
+
+## Constructors
+
+A `constructor` is used in the creation of an object that is an instance of a class. Typically it performs operations required to initialize the class before methods are invoked or fields are accessed. Constructors are never inherited.
+
+A constructor declaration includes the name, modifiers, parameters, and list of throwable exceptions. The `java.lang.reflect.Constructor `class provides a way to obtain this information.
+
+```
+Constructor[] allConstructors = c.getDeclaredConstructors();
+```
+
+Note that the first listed constructor is package-private, not public. It is returned because the example code uses `Class.getDeclaredConstructors()` rather than `Class.getConstructors()`, which returns only public constructors.
+
+### Retrieving and Parsing Constructor Modifiers
+Because of the role of constructors in the language, fewer modifiers are meaningful than for methods:
+
+* Access modifiers: public, protected, and private
+* Annotations
+
+```
+ctor.getModifiers()
+```
+
+### Creating New Class Instances
+
+There are two reflective methods for creating instances of classes: java.lang.reflect.Constructor.newInstance() and Class.newInstance(). The former is preferred and is thus used in these examples because:
+
+* Class.newInstance() can only invoke the zero-argument constructor, while Constructor.newInstance() may invoke any constructor, regardless of the number of parameters.
+* Class.newInstance() throws any exception thrown by the constructor, regardless of whether it is checked or unchecked. Constructor.newInstance() always wraps the thrown exception with an InvocationTargetException.
+* Class.newInstance() requires that the constructor be visible; Constructor.newInstance() may invoke private constructors under certain circumstances.
+
+```
+Constructor ctor = EmailAliases.class.getDeclaredConstructor(HashMap.class);
+```
+# Arrays and Enumerated Types
+
+From the Java virtual machine's perspective, arrays and enumerated types (or enums) are just classes. Many of the methods in Class may be used on them. Reflection provides a few specific APIs for arrays and enums. 
+
+## Arrays
+
+Arrays have a component type and a length (which is not part of the type). Arrays may be maniuplated either in their entirety or component by component. Reflection provides the java.lang.reflect.Array class for the latter purpose.
+
+### Identifying Array Types
+Array types may be identified by invoking `Class.isArray()`. 
+
+```java
+boolean found = false;
+ 	try {
+	    Class<?> cls = Class.forName(args[0]);
+	    Field[] flds = cls.getDeclaredFields();
+	    for (Field f : flds) {
+ 		Class<?> c = f.getType();
+		if (c.isArray()) {
+		    found = true;
+		    out.format("%s%n"
+                               + "           Field: %s%n"
+			       + "            Type: %s%n"
+			       + "  Component Type: %s%n",
+			       f, f.getName(), c, c.getComponentType());
+		}
+	    }
+	    if (!found) {
+		out.format("No array fields%n");
+	    }
+
+        // production code should handle this exception more gracefully
+ 	} catch (ClassNotFoundException x) {
+	    x.printStackTrace();
+	}
+```
+
+### Creating New Arrays
+
+Just as in non-reflective code, reflection supports the ability to dynamically create arrays of arbitrary type and dimensions via `java.lang.reflect.Array.newInstance()`.
+```
+... ...
+int n = cVals.length;
+Class<?> c = Class.forName(cName);
+Object o = Array.newInstance(c, n);
+``` 
