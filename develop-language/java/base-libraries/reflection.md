@@ -360,9 +360,48 @@ boolean found = false;
 ### Creating New Arrays
 
 Just as in non-reflective code, reflection supports the ability to dynamically create arrays of arbitrary type and dimensions via `java.lang.reflect.Array.newInstance()`.
-```
+```java
 ... ...
 int n = cVals.length;
 Class<?> c = Class.forName(cName);
 Object o = Array.newInstance(c, n);
+for (int i = 0; i < n; i++) {
+	String v = cVals[i];
+	Constructor ctor = c.getConstructor(String.class);
+	Object val = ctor.newInstance(v);
+	Array.set(o, i, val);
+}
 ``` 
+
+### Getting and Setting Arrays and Their Components
+
+Just as in non-reflective code, an array field may be set or retrieved in its entirety or component by component. **To set the entire array at once**, use `java.lang.reflect.Field.set(Object obj, Object value)`. **To retrieve the entire array**, use `Field.get(Object)`. Individual components can be set or retrieved using methods in `java.lang.reflect.Array`.  
+
+Array provides methods of the form setFoo() and getFoo() for setting and getting components of any primitive type. For example, the component of an int array may be set with `Array.setInt(Object array, int index, int value)` and may be retrieved with `Array.getInt(Object array, int index)`.
+
+method `java.util.Arrays.copyOf). java.util.Arrays` contains many methods which are convenient when operating on arrays.
+
+The variable argument `Array.newInstance(Class<?> componentType, int... dimensions)` provides a convenient way to create multi-dimensional arrays, but the components still need to initialized using the principle that that multi-dimensional arrays are nested arrays.
+
+## Enumerated Types
+
+An enum is a language construct that is used to define type-safe enumerations which can be used when a fixed set of named values is desired. All enums implicitly extend `java.lang.Enum`. Enums may contain one or more enum constants, which define unique instances of the enum type. An enum declaration defines an enum type which is very similar to a class in that it may have members such as fields, methods, and constructors (with some restrictions).
+
+The only **Reflection APIs that are specific to enums** are `Class.isEnum()`, `Class.getEnumConstants()`, and `java.lang.reflect.Field.isEnumConstant()`.
+
+### Examining Enums
+
+Reflection provides three enum-specific APIs:
+
+* `Class.isEnum()`  
+Indicates whether this class represents an enum type  
+* `Class.getEnumConstants()`  
+Retrieves the list of enum constants defined by the enum in the order they're declared
+* `java.lang.reflect.Field.isEnumConstant()`  
+Indicates whether this field represents an element of an enumerated type
+
+Sometimes it is necessary to dynamically retrieve the list of enum constants; in **non-reflective code** this is accomplished by invoking the implicitly declared static method `values()` on the enum. If an instance of **an enum type is not available** the only way to get a list of the possible values is to invoke `Class.getEnumConstants()` since it is impossible to instantiate an enum type.
+
+### Getting and Setting Fields with Enum Types
+
+Fields which store enums are set and retrieved as any other reference type, using `Field.set()` and `Field.get()`.
