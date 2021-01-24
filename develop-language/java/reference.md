@@ -11,11 +11,6 @@ https://docs.oracle.com/
 
 ***
 
-## spring 官网
-https://spring.io/
-
-***
-
 ## VisualVM官网
 
 https://visualvm.github.io/
