@@ -22,3 +22,6 @@ proxy_password=19920104Caishuang
 ```
 yum install libyaml-devel
 ```
+
+# 查看IP
+ ip addr
