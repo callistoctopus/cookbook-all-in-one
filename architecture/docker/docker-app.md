@@ -1,3 +1,27 @@
 # mysql
+
 docker pull mysql:5.7   # 拉取 mysql 5.7
 docker pull mysql       # 拉取最新版mysql镜像
+
+docker run -p 3306:3306 --restart=on-failure --name mysql -e MYSQL_ROOT_PASSWORD=toor -d mysql:5.7
+–name：容器名，此处命名为mysql
+-e：配置信息，此处配置mysql的root用户的登陆密码
+-p：端口映射，此处映射 主机3306端口 到 容器的3306端口
+-d：后台运行容器，保证在退出终端后容器继续运行
+
+docker exec -it mysql bash
+
+# mongo
+docker run --name mongo --restart=on-failure -p 27017:27017 -d mongo --auth
+
+docker exec -it mongo /bin/bash
+
+mongo
+use admin
+db.createUser({user:"root",pwd:"toor",roles:[{role:'root',db:'admin'}]})   //创建用户,此用户创建成功,则后续操作都需要用户认证
+exit
+
+# rabbit
+docker pull rabbitmq:management
+docker run -d --name rabbit --restart=on-failure -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=toor rabbitmq:management
+http://<hostname>:15672

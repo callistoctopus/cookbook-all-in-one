@@ -25,3 +25,22 @@ yum install libyaml-devel
 
 # 查看IP
  ip addr
+
+# 设置防火墙
+systemctl status firewalld.service
+systemctl stop firewalld.service
+
+# 启动服务
+systemctl start ***
+# 关闭服务
+systemctl stop ***
+# 开机自启动服务
+systemctl enable ***
+# 是否开机自启动
+systemctl is-enabled ***
+
+
+# 允许远程登陆
+vi /etc/ssh/sshd_config
+#PermitRootLogin yes -> PermitRootLogin yes
+systemctl restart sshd

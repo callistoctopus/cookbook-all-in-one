@@ -94,9 +94,10 @@ docker build -t runoob/centos:6.7 .
 # 容器操作
 
 启动容器
-docker run -it ubuntu /bin/bash
+docker run -it --restart=on-failure ubuntu /bin/bash
 -i: 交互式操作。
 -t: 终端。
+--restart:重启策略 no，默认策略 on-failure，在容器非正常退出时（退出状态非0），才会重启容器， on-failure:3，在容器非正常退出时重启容器，最多重启3次 always，在容器退出时总是重启容器
 ubuntu: ubuntu 镜像。
 /bin/bash：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 /bin/bash。
 通过 -p 参数来设置不一样的端口
