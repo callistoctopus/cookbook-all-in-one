@@ -25,3 +25,11 @@ exit
 docker pull rabbitmq:management
 docker run -d --name rabbit --restart=on-failure -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=toor rabbitmq:management
 http://<hostname>:15672
+
+# postgre
+docker pull postgres
+docker run --name postgre -p 5432:5432 --restart=on-failure -e POSTGRES_PASSWORD=toor -d postgres
+
+# redis
+docker pull redis
+docker run -itd --name redis --restart=on-failure -p 6379:6379 redis --requirepass "toor"
