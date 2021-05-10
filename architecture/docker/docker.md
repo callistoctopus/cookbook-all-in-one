@@ -6,6 +6,17 @@ https://www.docker.com/
 * ### 安装
   https://docs.docker.com/get-docker/
 
+$ sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+
+$ sudo yum install -y yum-utils
+
 # 注
 
 # 官方源（较慢）
@@ -23,11 +34,10 @@ $ sudo yum-config-manager \
     --add-repo \
     https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.repo
 
-
+$ sudo yum install docker-ce docker-ce-cli containerd.io
 
 ### 启动
 $ sudo systemctl start docker
-
 
 ## Docker Hub 官网
 https://hub.docker.com/  
