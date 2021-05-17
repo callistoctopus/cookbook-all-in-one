@@ -15,7 +15,7 @@ proxy_username=hanzhc
 proxy_password=19920104Caishuang 
 
 ## 软件更新
-**yum update**
+**yum update -y **
 
 ## 安装软件
 **yum install** *软件名称*

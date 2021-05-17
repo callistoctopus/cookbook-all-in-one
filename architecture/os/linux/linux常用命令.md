@@ -87,3 +87,9 @@ crontab -e
 ```
 ssh root@localhost
 ```
+
+## 追加用户权限
+su
+vi /etc/sudoers
+找到“root    ALL=(ALL)       ALL”一行，在下面插入新的一行
+:wq! 保存并退出。

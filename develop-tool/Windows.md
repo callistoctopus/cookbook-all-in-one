@@ -63,5 +63,8 @@
 * **Putty**  
   https://www.putty.org/
 
+  **WinSCP**
+  https://winscp.net/eng/docs/lang:chs
+
 * **XShell**  
   https://www.xshellcn.com/

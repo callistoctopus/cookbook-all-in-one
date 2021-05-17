@@ -34,7 +34,7 @@ $ sudo yum-config-manager \
     --add-repo \
     https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.repo
 
-$ sudo yum install docker-ce docker-ce-cli containerd.io
+$ sudo yum install -y docker-ce docker-ce-cli containerd.io
 
 ### 启动
 $ sudo systemctl start docker
