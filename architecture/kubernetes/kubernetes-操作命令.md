@@ -1,23 +1,3 @@
-
-## 官网
-https://kubernetes.io/  
-
-## 中文社区
-https://www.kubernetes.org.cn/  
-
-
-# 在 Linux 系统中安装 kubectl 
-## 下载最新发行版
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-
-## 安装 kubectl
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-
-## 测试
-kubectl version --client
-
-kubectl cluster-info
-
 kubectl get nodes
 
 # 发布应用
@@ -37,6 +17,9 @@ minikube tunnel
 
 kubectl get services balanced
 
+kubectl port-forward service/hello-minikube 7080:8080
+
+kubectl proxy --port=33567 --address='192.168.0.191' --accept-hosts='^.*' &
 
 
 kubectl get - 列出资源
