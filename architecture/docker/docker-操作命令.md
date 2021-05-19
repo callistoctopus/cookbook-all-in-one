@@ -73,6 +73,9 @@ cat docker/ubuntu.tar | docker import - test/ubuntu:v1
 或者
 docker import http://example.com/exampleimage.tgz example/imagerepo
 
+构建镜像
+docker build -t nginx:v3
+
 查看到容器的端口映射
 docker port bf08b7f2cd89
 

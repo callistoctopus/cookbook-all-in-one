@@ -42,11 +42,15 @@ tar -xzvf ruby-1.9.3-p392.tar.gz
 ```
 ***
 
+## 查看所有环境变量
+env
+
 ## 添加环境变量
 ```
 vi /etc/environment
 PATH="[old]:$JAVA_HOME/bin"
-export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib  export JAVA_HOME=/usr/local/jdk1.8.0_181
+export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib  
+export JAVA_HOME=/usr/local/jdk1.8.0_181
 ```
 ***
 
