@@ -19,6 +19,8 @@ CMD ["/etc/nginx/nginx.conf"]
 # 类似于 RUN 指令，用于运行程序，但二者运行的时间点不同:
 # CMD 在docker run 时运行。
 # RUN 是在 docker build。
+# RUN ["./test.php", "dev", "offline"] 等价于 RUN ./test.php dev offline
+# 以 && 符号连接命令，这样执行后，只会创建 1 层镜像。
 
 ENTRYPOINT ["nginx", "-c"]
 # 类似于 CMD 指令，但其不会被 docker run 的命令行参数指定的指令所覆盖，而且这些命令行参数会被当作参数送给 ENTRYPOINT 指令指定的程序。

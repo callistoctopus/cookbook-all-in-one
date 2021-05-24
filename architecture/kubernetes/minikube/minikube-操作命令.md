@@ -1,6 +1,8 @@
 # minikube命令
 
 ## 查看版本信息
+minikube start
+
 minikube version
 
 minikube pause

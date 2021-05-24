@@ -33,3 +33,6 @@ docker run --name postgre -p 5432:5432 --restart=on-failure -e POSTGRES_PASSWORD
 # redis
 docker pull redis
 docker run -itd --name redis --restart=on-failure -p 6379:6379 redis --requirepass "toor"
+
+# openjdk
+docker pull openjdk
