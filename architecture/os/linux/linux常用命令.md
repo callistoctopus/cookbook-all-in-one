@@ -97,3 +97,6 @@ su
 vi /etc/sudoers
 找到“root    ALL=(ALL)       ALL”一行，在下面插入新的一行
 :wq! 保存并退出。
+
+## 设置命令别名
+alias k=kubectl
