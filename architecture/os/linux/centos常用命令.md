@@ -51,3 +51,6 @@ passwd linuxidc
 
 # 切换用户名
 su - 用户名
+
+# 安装httpd
+yum install httpd

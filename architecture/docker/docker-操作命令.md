@@ -17,6 +17,9 @@ docker rmi hello-world
 docker tag 860c279d2fec runoob/centos:dev
 docker tag 镜像ID，这里是 860c279d2fec ,用户名称、镜像源名(repository name)和新的标签名(tag)。
 
+向自己的私有仓库上传镜像
+docker push 10.24.2.30:5000/nginx:latest  
+
 从已经创建的容器中更新镜像，并且提交这个镜像
 docker commit -m="has update" -a="runoob" e218edb10161 runoob/ubuntu:v2
 -m: 提交的描述信息
