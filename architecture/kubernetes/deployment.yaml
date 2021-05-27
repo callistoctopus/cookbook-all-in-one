@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-first-app
+  labels:
+    app: test-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test-app
+  template:
+    metadata:
+      labels:
+        app: test-app
+    spec:
+      containers:
+      - name: my-first-app
+        image: registry.cn-hongkong.aliyuncs.com/keiki/my-registry:v1 # 私有镜像
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: my-registry-secret # 名字要与创建命令参数保持一致

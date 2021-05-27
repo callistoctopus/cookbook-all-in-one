@@ -141,8 +141,8 @@ echo "hello world"
 你可以将插件视为在现有 kubectl 命令之上构建更复杂功能的一种方法
 
 
-
-
+# 创建密码
+kubectl create secret docker-registry registry-secret-aliyun --docker-server=registry.cn-beijing.aliyuncs.com --docker-username=xxxxxxx@qq.com --docker-password=xxxxxxx
 
 
 kubectl get nodes
