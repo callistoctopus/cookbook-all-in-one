@@ -100,3 +100,14 @@ vi /etc/sudoers
 
 ## 设置命令别名
 alias k=kubectl
+
+
+## 使用iptables进行端口转发
+
+1. 配置/etc/sysctl.conf文件的 net.ipv4.ip_forward = 1 默认是0, 允许iptalbes FORWARD。
+2. service iptables stop  关闭防火墙
+3. 本地接口IP 61.144.a.b 的3389端口 转发到 116.6.c.d的3389
+   iptables -t nat -A PREROUTING --dst 61.144.a.b -p tcp --dport 3389 -j DNAT --to-destination 116.6.c.d:3389
+   iptables -t nat -A POSTROUTING --dst 116.6.c.d -p tcp --dport 3389 -j SNAT --to-source 61.144.a.b
+4. service iptables save
+5. service iptables start

@@ -54,3 +54,21 @@ su - 用户名
 
 # 安装httpd
 yum install httpd
+
+# CentOS7使用iptables进行网络管理
+1. 禁用和注销firewalld防火墙服务
+   systemctl stop firewalld
+   systemctl mask firewalld
+
+2. 安装iptables-services包
+   yum install iptables-services
+   
+3. 服务器启动时自动开启服务
+   systemctl enable iptables
+
+4. 按照需要操作防火墙
+   systemctl [stop|start|restart] iptables
+   或者
+   service [stop|start|restart] iptables
+
+5. service iptables save
