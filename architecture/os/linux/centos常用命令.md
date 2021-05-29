@@ -7,6 +7,18 @@ sudo vi ifcfg-en33 也有可能是其他后缀
 
 再执行 systemctl restart network 即可联网。
 
+# 修改IP地址
+cd /etc/sysconfig/network-scripts/
+sudo vi ifcfg-en33 也有可能是其他后缀
+BOOTPROTO=static
+ONBOOT=yes
+IPADDR=192.168.110.220
+GATEWAY=192.168.110.1
+NETMASK=255.255.255.0
+DNS1=192.168.110.1
+
+再执行 systemctl restart network 即可。
+
 # 为 yum 设置网络代理
 
 在/etc/yum.conf中添加：
@@ -28,6 +40,7 @@ yum install libyaml-devel
 
 # 设置防火墙
 systemctl status firewalld.service
+systemctl disable firewalld.service
 systemctl stop firewalld.service
 
 # 启动服务
@@ -72,3 +85,9 @@ yum install httpd
    service [stop|start|restart] iptables
 
 5. service iptables save
+
+
+# 禁用SELinux
+setenforce 0
+vi /etc/selinux/config
+SELINUX=permissive
