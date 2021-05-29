@@ -59,7 +59,9 @@ kubectl cluster-info
 6. 安装启用Docker
 7. sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 8. systemctl enable --now kubelet
-9. kubeadm初始化镜像无法下载
+
+
+9.  kubeadm初始化镜像无法下载
     查看需要的镜像
     kubeadm config images list
    使用国内云计算厂商都提供了kubernetes的镜像服务
@@ -69,6 +71,8 @@ kubectl cluster-info
 
    注：k8s.gcr.io/coredns/coredns:v1.8.0镜像为registry.aliyuncs.com/google_containers/coredns:1.8.0
 
-10. kubeadmin init 
+11. kubeadmin init 
+12. export KUBECONFIG=/etc/kubernetes/admin.conf
+13. kubectl get nodes
 
 
