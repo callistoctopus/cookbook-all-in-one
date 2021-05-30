@@ -1,5 +1,8 @@
 # 常用命令
 
+# 登录私有仓库
+sudo docker login --username=auste**** registry.cn-hangzhou.aliyuncs.com
+
 # 镜像操作
 列出本地主机上的镜像
 docker images 

@@ -91,3 +91,6 @@ yum install httpd
 setenforce 0
 vi /etc/selinux/config
 SELINUX=permissive
+
+# 修改主机名
+hostnamectl set-hostname 

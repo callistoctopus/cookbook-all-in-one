@@ -36,8 +36,8 @@ $ sudo yum-config-manager \
 
 $ sudo yum install -y docker-ce docker-ce-cli containerd.io
 
-### 启动
-$ sudo systemctl start docker
+### 设置开机启动并启动
+$ sudo systemctl enable docker && systemctl start docker
 
 ## Docker Hub 官网
 https://hub.docker.com/  
