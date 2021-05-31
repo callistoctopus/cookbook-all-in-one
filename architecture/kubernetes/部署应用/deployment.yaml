@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-first-app
+  name: my-first-app              #Pod名称
   labels:
-    app: test-app
+    app: test-app                 #标签
 spec:
   replicas: 3
   selector:
@@ -15,7 +15,7 @@ spec:
         app: test-app
     spec:
       containers:
-      - name: my-first-app
+      - name: my-first-app        #容器名称
         image: registry.cn-hongkong.aliyuncs.com/keiki/my-registry:v1 # 私有镜像
         ports:
         - containerPort: 8080

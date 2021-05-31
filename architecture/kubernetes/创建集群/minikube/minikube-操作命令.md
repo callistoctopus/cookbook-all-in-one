@@ -14,3 +14,5 @@ minikube config set memory 16384
 minikube addons list
 
 minikube delete --all
+
+minikube tunnel
