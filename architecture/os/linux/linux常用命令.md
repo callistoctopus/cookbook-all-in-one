@@ -1,3 +1,12 @@
+# 查看到当前linux系统的发行版本信息
+cat /etc/issue
+
+# 查看到linux当前运行的内核版本
+cat /proc/version
+或
+uname -srm
+或
+hostnamectl
 
 ## linux系统间文件拷贝命令(scp)
 **scp** *src* *user*@*host*:*dst*
