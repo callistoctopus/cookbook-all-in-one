@@ -1,3 +1,9 @@
+# unbuntu 
+docker run -p 221:22 -itd --privileged=true --name ubuntu-dev ubuntu /sbin/init
+
+# centos 
+docker run -p 222:22 -p 33892:3389 -itd --privileged=true --name centos-dev centos /sbin/init
+
 # mysql
 
 docker pull mysql:5.7   # 拉取 mysql 5.7

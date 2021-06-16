@@ -52,6 +52,25 @@ systemctl enable ***
 # 是否开机自启动
 systemctl is-enabled ***
 
+# 安装远程服务
+yum install -y openssl openssh-server
+systemctl start sshd.service
+systemctl enable sshd.service
+
+# 安装图形化界面
+yum groupinstall "Server with GUI" -y --allowerasing
+
+# 安装远程桌面服务
+1. 默认库不包含xrdp，需要安装epel库。
+yum -y install epel-release
+2. 然后安装xrdp
+yum -y install xrdp
+3. 启动xrdp并设置开机启动
+systemctl start xrdp
+systemctl enable xrdp
+4. 安装好了之后将防火墙关闭,或者开放3389端口
+systemctl stop firewalld
+systemctl disable firewalld
 
 # 允许远程登陆
 vi /etc/ssh/sshd_config
