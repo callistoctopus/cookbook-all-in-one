@@ -18,3 +18,12 @@ apt-get install unzip
 unzip vmoss.zip
 ```
 
+# 安装xrdp
+apt update \
+&& apt install -y wget unzip \
+&& apt install -y language-pack-zh-han* \
+&& apt install -y language-pack-gnome-zh-han* \
+&& apt install -y xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils \
+&& apt install -y xrdp \
+&& service xrdp start
+

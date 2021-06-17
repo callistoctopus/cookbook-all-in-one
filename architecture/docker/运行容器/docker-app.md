@@ -1,8 +1,13 @@
 # unbuntu 
-docker run -p 221:22 -itd --privileged=true --name ubuntu-dev ubuntu /sbin/init
+docker run -itd --privileged=true --name understand -p 3399:3389 ubuntu:18.04
 
 # centos 
 docker run -p 222:22 -p 33892:3389 -itd --privileged=true --name centos-dev centos /sbin/init
+
+# kasmweb
+docker pull kasmweb/desktop:1.8.0-edge
+docker run -itd --shm-size=512m -p 6901:6901 -e VNC_PW=password kasmweb/desktop:1.8.0-edge
+https://8.208.26.1:6901/
 
 # mysql
 
