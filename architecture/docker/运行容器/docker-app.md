@@ -1,13 +1,22 @@
 # unbuntu 
-docker run -itd --privileged=true --name understand -p 3399:3389 ubuntu:18.04
+docker run -itd --privileged=true --name ubuntu -p 3399:3389 ubuntu:18.04
 
 # centos 
 docker run -p 222:22 -p 33892:3389 -itd --privileged=true --name centos-dev centos /sbin/init
 
-# kasmweb
-docker pull kasmweb/desktop:1.8.0-edge
-docker run -itd --shm-size=512m -p 6901:6901 -e VNC_PW=password kasmweb/desktop:1.8.0-edge
-https://8.208.26.1:6901/
+# kasmweb desktop
+docker pull kasmweb/desktop:1.9.0
+docker run -itd --shm-size=512m -p 6901:6901 -u root -e VNC_PW=password kasmweb/desktop:1.9.0
+https://<ip>:6901/
+User : kasm_user
+Password: password
+
+# kasmweb desktop-deluxe
+docker pull kasmweb/desktop-deluxe:1.7.0-edge
+docker run -itd --shm-size=512m -p 6901:6901 -u root -e VNC_PW=password kasmweb/desktop-deluxe:1.7.0-edge
+https://<ip>:6901/
+User : kasm_user
+Password: password
 
 # mysql
 

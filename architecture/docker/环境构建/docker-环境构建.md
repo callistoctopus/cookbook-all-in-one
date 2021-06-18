@@ -1,10 +1,13 @@
 ## Docker官网
 https://www.docker.com/
 
+### 安装(Ubuntu)
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+service docker start
 
-
-* ### 安装
-  https://docs.docker.com/get-docker/
+### 安装(Centos)
+https://docs.docker.com/get-docker/
 
 $ sudo yum remove docker \
                   docker-client \
