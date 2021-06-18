@@ -48,3 +48,9 @@ apt install net-tools
 
 # ping 
 apt install iputils-ping
+
+# 安装 QT
+apt-get install libxkbcommon-x11-0
+
+# 安装 java
+apt -y install openjdk-11-jdk
