@@ -43,3 +43,8 @@ apt -y update \
 && apt install -y xrdp \
 && service xrdp start
 
+# ifconfig
+apt install net-tools
+
+# ping 
+apt install iputils-ping
