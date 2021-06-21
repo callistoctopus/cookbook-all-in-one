@@ -13,7 +13,7 @@ Password: password
 
 # kasmweb desktop-deluxe
 docker pull kasmweb/desktop-deluxe:1.7.0-edge
-docker run -itd --shm-size=512m -p 6901:6901 -u root -e VNC_PW=password kasmweb/desktop-deluxe:1.7.0-edge
+docker run -itd --shm-size=512m -p 6901:6901 -u root -e VNC_PW=password kasmweb/desktop-deluxe:1.9.0
 https://<ip>:6901/
 User : kasm_user
 Password: password

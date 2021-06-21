@@ -6,23 +6,23 @@ lsb_release -a
 **apt-get update**
 
 ## 软件安装
-**apt -y install** *软件名称*
-```
+apt -y install *软件名称*
 apt-get install unzip
 apt-get install zip
-```
+
+# 软件卸载
+apt-get -y remove firefox
+apt-get -y autoremove
 
 # 安装deb文件 
 dpkg -i <package.deb>
 
 ## 解压Zip压缩文件
-```
 apt-get install unzip
-```
-**unzip** *文件名*
-```
+
+unzip <文件名>
 unzip vmoss.zip
-```
+
 
 # 安装xrdp
 apt update \
