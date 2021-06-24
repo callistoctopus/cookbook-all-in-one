@@ -120,3 +120,7 @@ alias k=kubectl
    iptables -t nat -A POSTROUTING --dst 116.6.c.d -p tcp --dport 3389 -j SNAT --to-source 61.144.a.b
 4. service iptables save
 5. service iptables start
+
+
+## 查看端口
+netstat -aptn
