@@ -6,6 +6,9 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 service docker start
 
+#### 安装docker-compose(Ubuntu)
+apt -y install docker-compose
+
 ### 安装(Centos)
 https://docs.docker.com/get-docker/
 
