@@ -122,5 +122,16 @@ alias k=kubectl
 5. service iptables start
 
 
-## 查看端口
+# 查看端口
 netstat -aptn
+
+
+# 查看当前时间
+date
+
+# 修改时间
+date -s hh:mm:ss
+date -s "yyyy-MM-dd hh:mm:ss"
+
+## 将时间写入bios避免重启失效
+hwclock -w
