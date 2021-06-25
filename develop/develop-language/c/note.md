@@ -78,3 +78,14 @@ radix：转换后的进制数，可以是10进制、16进制等，范围必须�
 两个h表示short short，即 char。
 %hhx 用于输出char
 %hx 用于输出short int.
+
+
+
+
+# signal和sigset
+signal和sigset都是注册信号函数
+
+signal是ANSI C的信号处理函数
+sigset是System V的信号处理函数
+
+ANSI C（标准C）是所有平台C程序都支持的，System V只在Unix/Linux使用。
