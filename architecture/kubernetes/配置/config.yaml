@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k8swebservice-configmap
+data:
+  application.properties: |
+    appname=appname-from-configmap
+    apptype=apptype-from-configmap

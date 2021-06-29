@@ -62,7 +62,7 @@ kubectl get services hello-minikube
 kubectl top [flags] [options]
 
 # 在 pod 中打印容器的日志。
-kubectl logs POD [-c CONTAINER] [--follow] [flags]
+kubectl logs [POD] [-c CONTAINER] [--follow] [flags]
 
 
 
@@ -71,7 +71,7 @@ kubectl logs POD [-c CONTAINER] [--follow] [flags]
 kubectl cp <file-spec-src> <file-spec-dest> [options]
 
 # 对 pod 中的容器执行命令。
-kubectl exec POD [-c CONTAINER] [-i] [-t] [flags] [-- COMMAND [args...]]
+kubectl exec [POD] [-c CONTAINER] [-i] [-t] [flags] [-- COMMAND [args...]]
 
 # 将副本控制器、服务或 pod 作为新的 Kubernetes 服务暴露。
 kubectl expose (-f FILENAME | TYPE NAME | TYPE/NAME) [--port=port] [--protocol=TCP|UDP] [--target-port=number-or-name] [--name=name] [--external-ip=external-ip-of-service] [--type=type] [flags]
@@ -80,7 +80,7 @@ kubectl expose (-f FILENAME | TYPE NAME | TYPE/NAME) [--port=port] [--protocol=T
 kubectl options
 
 # 将一个或多个本地端口转发到一个 pod。
-kubectl port-forward POD [LOCAL_PORT:]REMOTE_PORT [...[LOCAL_PORT_N:]REMOTE_PORT_N] [flags]
+kubectl port-forward [POD] [LOCAL_PORT:]REMOTE_PORT [...[LOCAL_PORT_N:]REMOTE_PORT_N] [flags]
 # 将本地的7080转发到hello-minikube的8080
 kubectl port-forward service/hello-minikube 7080:8080 
 
