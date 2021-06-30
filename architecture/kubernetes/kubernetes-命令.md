@@ -32,40 +32,20 @@ NAME：指定资源的名称。名称区分大小写。 如果省略名称，则
 
 flags: 指定可选的参数。例如，可以使用 -s 或 -server 参数指定 Kubernetes API 服务器的地址和端口。
 
+# 输出选项
+
+# kubectl [command] [TYPE] [NAME] -o=<output_format>
+-o custom-columns=<spec>	使用逗号分隔的自定义列列表打印表。
+-o custom-columns-file=<filename>	使用 <filename> 文件中的自定义列模板打印表。
+-o json	输出 JSON 格式的 API 对象
+-o jsonpath=<template>	打印 jsonpath 表达式定义的字段
+-o jsonpath-file=<filename>	打印 <filename> 文件中 jsonpath 表达式定义的字段。
+-o name	仅打印资源名称而不打印任何其他内容。
+-o wide	以纯文本格式输出，包含任何附加信息。对于 pod 包含节点名。
+-o yaml	输出 YAML 格式的 API 对象。
+
 
 # 常用操作
-
-# 显示运行在客户端和服务器上的 Kubernetes 版本。
-kubectl version [--client] [flags]
-
-# 列出可用的 API 资源。
-kubectl api-resources
-
-# 列出可用的 API 版本。
-kubectl api-versions
-
-# 显示有关集群中主服务器和服务的端口信息。
-kubectl cluster-info
-
-# 显示一个或多个资源的详细状态。
-kubectl describe (-f FILENAME | TYPE [NAME_PREFIX | /NAME | -l label]) [flags]
-
-# 列出一个或多个资源。
-kubectl get (-f FILENAME | TYPE [NAME | /NAME | -l label]) [--watch] [--sort-by=FIELD] [[-o | --output]=OUTPUT_FORMAT] [flags]
-
-kubectl get nodes
-kubectl get pods -l app=test
-kubectl get deployments
-kubectl get services hello-minikube
-
-# 显示资源（CPU/内存/存储）的使用情况。
-kubectl top [flags] [options]
-
-# 在 pod 中打印容器的日志。
-kubectl logs [POD] [-c CONTAINER] [--follow] [flags]
-
-
-
 
 # 在容器之间复制文件和目录。
 kubectl cp <file-spec-src> <file-spec-dest> [options]
@@ -105,17 +85,7 @@ kubectl label po my-first-app app=test2 --overwrite
 
 
 
-# 输出选项
 
-# kubectl [command] [TYPE] [NAME] -o=<output_format>
--o custom-columns=<spec>	使用逗号分隔的自定义列列表打印表。
--o custom-columns-file=<filename>	使用 <filename> 文件中的自定义列模板打印表。
--o json	输出 JSON 格式的 API 对象
--o jsonpath=<template>	打印 jsonpath 表达式定义的字段
--o jsonpath-file=<filename>	打印 <filename> 文件中 jsonpath 表达式定义的字段。
--o name	仅打印资源名称而不打印任何其他内容。
--o wide	以纯文本格式输出，包含任何附加信息。对于 pod 包含节点名。
--o yaml	输出 YAML 格式的 API 对象。
 
 
 
