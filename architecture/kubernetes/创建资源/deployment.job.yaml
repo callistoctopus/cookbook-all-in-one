@@ -1,0 +1,16 @@
+apiVersion: batch/v1 (1)
+kind: Job 
+metadata:
+ name: myjob
+spec:
+ completions: 6 # 上面配置的含义是:每次运行两个Pod,直到总共有6个Pod成功完成
+ parallelism: 2 # 同时运行两个pod
+ template:
+  metadata:
+    name: myjob
+  spec:
+   containers:
+   - name: hello
+     image: busybox
+     command: ["echo","hello k8s job !"]
+   restartPolicy: OnFailure
