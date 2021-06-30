@@ -56,3 +56,18 @@ docker run -itd --name redis --restart=on-failure -p 6379:6379 redis --requirepa
 
 # openjdk
 docker pull openjdk
+
+# nginx
+mkdir -p /home/nginx/www /home/nginx/logs /home/nginx/conf
+
+docker run --rm --name nginx-test --network host -d nginx
+
+docker cp [containerid]:/etc/nginx/nginx.conf /home/nginx/conf/
+
+docker stop [containerid]
+
+docker run --rm --name nginx --network host  \
+  -v /home/nginx/www:/usr/share/nginx/html \
+  -v /home/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
+  -v /home/nginx/logs:/var/log/nginx \
+  -d nginx
