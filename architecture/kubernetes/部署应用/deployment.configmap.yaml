@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8swebservice              #Pod名称
+  labels:
+    app: test-app                 #标签
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test-app
+  template:
+    metadata:
+      labels:
+        app: test-app
+    spec:
+      containers:
+      - name: k8swebservice        #容器名称
+        image: callistoctopus/k8swebservice:0.0.1.002 # 私有镜像
+        imagePullPolicy: Always
+        args: ["--spring.config.location=application.properties"]
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: config-volume
+          mountPath: /apps/application.properties
+          subPath: application.properties
+      imagePullSecrets:
+      - name: registry-secret-dockerhub # 名字要与创建命令参数保持一致
+      volumes:
+      - name: config-volume
+        configMap:
+          name: k8swebservice-configmap
+          items:
+            - key: application.properties
+              path: application.properties	

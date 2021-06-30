@@ -1,0 +1,7 @@
+FROM openjdk
+
+COPY ./image/* /apps/
+
+WORKDIR /apps
+
+ENTRYPOINT ["java", "-jar", "k8swebservice.jar"]
