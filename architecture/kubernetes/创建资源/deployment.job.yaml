@@ -1,4 +1,4 @@
-apiVersion: batch/v1 (1)
+apiVersion: batch/v1
 kind: Job 
 metadata:
  name: myjob
