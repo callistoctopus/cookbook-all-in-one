@@ -16,3 +16,5 @@ minikube addons list
 minikube delete --all
 
 minikube tunnel
+
+minikube dashboard --url

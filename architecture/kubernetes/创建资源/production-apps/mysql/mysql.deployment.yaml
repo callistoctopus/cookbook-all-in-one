@@ -25,20 +25,20 @@ spec:
           - name: MYSQL_PASSWORD
             value: user
         image: mysql:5.6
-        name: model-db-container
+        name: mysql-container
         ports:
         - containerPort: 3306
           name: dbapi
         volumeMounts:
         - mountPath: /var/lib/mysql
-          name: model-db-storage
+          name: mysql-storage
         - name: config
           mountPath: /etc/mysql/conf.d/my.cnf
           subPath: my.cnf
       volumes:
-      - name: model-db-storage
+      - name: mysql-storage
         persistentVolumeClaim:
-          claimName: db-pvc
+          claimName: mysql-pvc
       - name: config      
         configMap:
           name: mysql-config

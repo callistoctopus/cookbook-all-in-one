@@ -76,16 +76,19 @@ EOF
     k8s.gcr.io/coredns/coredns:v1.8.0
 
 
-10.  kubeadmin init 
-11.  安装weave网络插件
+10.  搭建控制平面节点 （仅主节点）
+    
+     kubeadm init 
+
+11.  安装weave网络插件 （仅主节点）
 
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
-12.  export KUBECONFIG=/etc/kubernetes/admin.conf
-13.  kubectl get nodes
+1.   export KUBECONFIG=/etc/kubernetes/admin.conf （仅主节点）
+2.   kubectl get nodes （仅主节点）
 
 
-14.  子节点加入集群 
+3.   子节点加入集群  （仅子节点）
 kubeadm join 192.168.110.220:6443 --token fk77w6.m2r11paj2sst1ezg --discovery-token-ca-cert-hash sha256:7ae6944565d8c8468e55c65cb8b5e3a4fa5b315b551b153741a45b8ff5c0b793
 
 

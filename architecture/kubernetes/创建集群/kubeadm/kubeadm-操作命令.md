@@ -4,3 +4,8 @@ kubeadm token create --print-join-command
 
 # 查看token
 kubeadm token list
+
+# 设置主节点是否可被调度
+kubectl taint nodes [nodename] node-role.kubernetes.io/master-
+
+kubectl taint nodes [nodename] node-role.kubernetes.io/master=:NoSchedule
