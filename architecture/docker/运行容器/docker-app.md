@@ -60,11 +60,13 @@ docker pull openjdk
 # nginx
 mkdir -p /home/nginx/www /home/nginx/logs /home/nginx/conf
 
+//获取nginx.conf(可省略)
 docker run --rm --name nginx-test --network host -d nginx
 
 docker cp [containerid]:/etc/nginx/nginx.conf /home/nginx/conf/
 
 docker stop [containerid]
+//获取nginx.conf
 
 docker run --rm --name nginx --network host  \
   -v /home/nginx/www:/usr/share/nginx/html \
