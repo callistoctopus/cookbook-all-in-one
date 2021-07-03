@@ -9,3 +9,29 @@ kubeadm token list
 kubectl taint nodes [nodename] node-role.kubernetes.io/master-
 
 kubectl taint nodes [nodename] node-role.kubernetes.io/master=:NoSchedule
+
+
+# 驱逐node上的pod
+kubectl drain node06 --delete-local-data --force --ignore-daemonsets
+
+# 删除node
+kubectl delete nodes node06
+
+# 重置节点
+kubeadm reset
+systemctl stop kubelet
+systemctl stop docker
+
+rm -rf /var/lib/cni/
+rm -rf /var/lib/kubelet/*
+rm -rf /etc/cni/
+
+ifconfig cni0 down
+ifconfig flannel.1 down
+ifconfig docker0 down
+
+ip link delete cni0
+ip link delete flannel.1
+
+systemctl start docker
+systemctl start kubelet

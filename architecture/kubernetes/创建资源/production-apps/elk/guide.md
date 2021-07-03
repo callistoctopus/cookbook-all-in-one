@@ -19,6 +19,27 @@ spec:
       node.store.allow_mmap: false
 EOF
 
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-pv0
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  claimRef:
+    namespace: default
+    name: elasticsearch-data-quickstart-es-default-0
+  hostPath:
+    path: "/mnt/data"
+EOF
+
 kubectl get elasticsearch
 
 kubectl get service quickstart-es-http
@@ -51,3 +72,37 @@ kubectl port-forward service/quickstart-kb-http 5601
 用户名：elastic
 密码：
 kubectl get secret quickstart-es-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode; echo
+
+
+cat <<EOF | kubectl apply -f -
+apiVersion: beat.k8s.elastic.co/v1beta1
+kind: Beat
+metadata:
+  name: quickstart
+spec:
+  type: filebeat
+  version: 7.13.2
+  elasticsearchRef:
+    name: quickstart
+  config:
+    filebeat.inputs:
+    - type: log
+      paths:
+      - /var/apps/log/*.log
+  daemonSet:
+    podTemplate:
+      spec:
+        dnsPolicy: ClusterFirstWithHostNet
+        hostNetwork: true
+        securityContext:
+          runAsUser: 0
+        containers:
+        - name: filebeat
+          volumeMounts:
+          - name: varlogcontainers
+            mountPath: /var/apps/log
+        volumes:
+        - name: varlogcontainers
+          hostPath:
+            path: /var/apps/log
+EOF

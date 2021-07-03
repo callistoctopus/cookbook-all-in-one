@@ -80,15 +80,16 @@ EOF
     
      kubeadm init 
 
-11.  安装weave网络插件 （仅主节点）
+12. export KUBECONFIG=/etc/kubernetes/admin.conf （仅主节点）
+
+13.  安装weave网络插件 （仅主节点）
 
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
-1.   export KUBECONFIG=/etc/kubernetes/admin.conf （仅主节点）
-2.   kubectl get nodes （仅主节点）
+14. kubectl get nodes （仅主节点）
 
 
-3.   子节点加入集群  （仅子节点）
+15.   子节点加入集群  （仅子节点）
 kubeadm join 192.168.110.220:6443 --token fk77w6.m2r11paj2sst1ezg --discovery-token-ca-cert-hash sha256:7ae6944565d8c8468e55c65cb8b5e3a4fa5b315b551b153741a45b8ff5c0b793
 
 

@@ -28,6 +28,15 @@ vi Gemfile
 ### 保存文件命令
 **wq**
 
+### 查找文件
+命令模式下输入“/字符串”，例如“/Section 3”
+
+### 向文件末尾追加
+echo 'add content'>>/home/data/test.sh
+>> 是追加
+echo 'add content'>/home/data/test.sh
+> 是删除原有内容，添加
+
 ***
 
 ## 下载文件
