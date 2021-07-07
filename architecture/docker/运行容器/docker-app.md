@@ -73,3 +73,21 @@ docker run --rm --name nginx --network host  \
   -v /home/nginx/conf/nginx.conf:/etc/nginx/nginx.conf \
   -v /home/nginx/logs:/var/log/nginx \
   -d nginx
+
+# mono
+
+# gcc
+
+# node
+
+# python
+
+# golang
+
+# ruby
+
+# bash
+
+# java
+
+# groovy
