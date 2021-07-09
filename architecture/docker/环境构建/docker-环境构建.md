@@ -42,8 +42,14 @@ $ sudo yum-config-manager \
 
 $ sudo yum install -y docker-ce docker-ce-cli containerd.io
 
-### 设置开机启动并启动
+# 设置开机启动并启动
 $ sudo systemctl enable docker && systemctl start docker
+
+#### 安装docker-compose(Centos)
+
+curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 ## Docker Hub 官网
 https://hub.docker.com/  
