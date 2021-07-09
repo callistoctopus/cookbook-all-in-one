@@ -77,6 +77,8 @@ docker run --rm --name nginx --network host  \
 # mono
 
 # gcc
+docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp gcc:4.9 gcc -o myapp myapp.c
+docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp gcc:4.9 make
 
 # node
 
