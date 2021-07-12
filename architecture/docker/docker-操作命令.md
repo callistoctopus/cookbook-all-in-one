@@ -37,6 +37,9 @@ docker build -t runoob/centos:6.7 .
 
 # 容器操作
 
+## 拷贝文件
+docker cp <containerid>:<path> <containerid>:<path>
+
 ## 启动容器
 docker run -it --restart=on-failure ubuntu /bin/bash
 -i: 交互式操作。
