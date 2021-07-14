@@ -88,7 +88,7 @@ docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp gcc:4.9 make
 # node
 docker run -it --rm --name my-running-script -v "$PWD":/usr/src/app -w /usr/src/app node:8 node your-daemon-or-script.js
 
-## dockerfile
+<dockerfile>
 FROM node:10
 EXPOSE 8888
 
@@ -98,7 +98,7 @@ docker run -it --rm --name my-running-app my-nodejs-app
 # python
 docker run -it --rm --name my-running-script -v "$PWD":/usr/src/myapp -w /usr/src/myapp python:3 python your-daemon-or-script.py
 
-## dockerfile
+<dockerfile>
 FROM python:3
 WORKDIR /usr/src/app
 COPY requirements.txt ./
@@ -120,7 +120,7 @@ docker run --rm -v "$PWD":/usr/src/app -w /usr/src/app ruby:2.5 bundle install
 ## Run a single Ruby script
 docker run -it --rm --name my-running-script -v "$PWD":/usr/src/myapp -w /usr/src/myapp ruby:2.5 ruby your-daemon-or-script.rb
 
-## dockerfile
+<dockerfile>
 FROM ruby:2.5
 RUN bundle config --global frozen 1
 WORKDIR /usr/src/app
@@ -135,7 +135,7 @@ docker run -it --name my-running-script my-ruby-app
 # bash
 docker run -it --rm -v /path/to/script.sh:/script.sh:ro bash:4.4 bash /script.sh
 
-## dockerfile
+<dockerfile>
 FROM bash:4.4
 COPY script.sh /
 CMD ["bash", "/script.sh"]
@@ -146,7 +146,7 @@ docker run -it --rm --name my-running-app my-bash-app
 # java
 docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp openjdk:7 javac Main.java
 
-## dockerfile
+<dockerfile>
 FROM openjdk:7
 COPY . /usr/src/myapp
 WORKDIR /usr/src/myapp

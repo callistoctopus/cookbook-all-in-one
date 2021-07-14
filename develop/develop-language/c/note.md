@@ -89,3 +89,20 @@ signal是ANSI C的信号处理函数
 sigset是System V的信号处理函数
 
 ANSI C（标准C）是所有平台C程序都支持的，System V只在Unix/Linux使用。
+
+
+# C语言结构体数组指针运算
+
+ptr为某一结构体数组的初始地址
+
+<错误>
+ptr = ptr + 8;
+
+<正确>
+for(int i = 0; i < 数组大小; i++){
+  if(ptr && (ptr = ptr + i)){
+    if(i == 8) {
+      break;
+    }
+  }
+}
