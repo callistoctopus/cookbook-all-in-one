@@ -113,3 +113,8 @@ SELINUX=permissive
 
 # 修改主机名
 hostnamectl set-hostname 
+
+# 编译工具 
+gcc: yum -y install gcc
+g++: yum -y install gcc-c++
+cmake: install -y cmake
