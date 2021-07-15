@@ -53,6 +53,9 @@ tar -xzvf ruby-1.9.3-p392.tar.gz
 ```
 ***
 
+## zip压缩命令
+zip -r <name>.zip <dir>
+
 ## 运行命令
 **./**<命令>  
 ```
