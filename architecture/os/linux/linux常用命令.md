@@ -147,3 +147,7 @@ date -s "yyyy-MM-dd hh:mm:ss"
 
 ## 将时间写入bios避免重启失效
 hwclock -w
+
+
+# 执行脚本
+bash <(curl -L <remote.sh>)
