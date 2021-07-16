@@ -30,6 +30,9 @@ vi Gemfile
 
 ### 查找文件
 命令模式下输入“/字符串”，例如“/Section 3”
+输入你需要查找的关键字，回车
+如果要继续查找关键字，输入n
+向前查找，输入N（大写）
 
 ### 向文件末尾追加
 echo 'add content'>>/home/data/test.sh
