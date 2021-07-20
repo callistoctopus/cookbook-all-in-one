@@ -196,3 +196,6 @@ REG ADD HKLM\SYSTEM\CurrentControlSet\Services\RasMan\Parameters /v ProhibitIpSe
 右键单击系统托盘中的无线/网络图标。
 选择 打开"网络和 Internet"设置，然后在打开的页面中单击左侧的 VPN。
 选择新的 VPN 连接，然后单击 连接。如果出现提示，在登录窗口中输入 你的 VPN 用户名 和 密码 ，并单击 确定。
+
+# jenkins
+docker run -itd -p 8080:8080 -p 50000:50000 -v /root/jenkins:/var/jenkins_home jenkins/jenkins
