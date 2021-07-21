@@ -118,3 +118,8 @@ hostnamectl set-hostname
 gcc: yum -y install gcc
 g++: yum -y install gcc-c++
 cmake: install -y cmake
+
+# 安装Mysql客户端
+rpm -ivh https://repo.mysql.com//mysql57-community-release-el7-11.noarch.rpm
+yum search mysql-community
+yum install mysql-community-client.x86_64

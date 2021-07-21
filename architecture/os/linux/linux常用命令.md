@@ -139,6 +139,11 @@ alias k=kubectl
 
 # 查看端口
 netstat -aptn
+apt-get -y install net-tools
+
+# 查看远程端口
+telnet ip port
+yum install -y telnet
 
 
 # 查看当前时间

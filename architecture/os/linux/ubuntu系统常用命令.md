@@ -43,6 +43,9 @@ apt -y update \
 && apt install -y xrdp \
 && service xrdp start
 
+# 安装防火墙
+apt-get install ufw
+
 # ifconfig
 apt install net-tools
 
@@ -67,3 +70,14 @@ apt -y install openjdk-11-jdk
 
 （5）重启SSH服务
 　命令：service ssh restart
+
+# 安装Mysql客户端
+apt-get install -y mysql-client
+
+# 安装Mysql
+apt-get install -y mysql-server
+mysql_secure_installation
+systemctl status mysql.service
+
+# 安装systemctl 
+apt-get -y install --reinstall systemd
