@@ -15,7 +15,7 @@ exit
     update user set host='%' where user ='root';
 
 4. 再执行授权语句：  
-    GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'WITH GRANT OPTION;
+    GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' identified by '123456' WITH GRANT OPTION;
     grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;
 
 5. 执行以上语句之后再执行：
