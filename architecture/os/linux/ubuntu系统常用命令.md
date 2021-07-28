@@ -1,9 +1,13 @@
 # 版本信息
 lsb_release -a
 
+# 查找软件
+apt-cache search <softname>
+apt-cache madison <sofrname>
 
 ## 软件更新 20.04
-**apt-get update**
+apt-get update -y
+apt-get upgrade -y
 
 ## 软件安装
 apt -y install *软件名称*

@@ -54,6 +54,8 @@ curl https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p392.tar.gz --output ru
 ``` 
 tar -xzvf ruby-1.9.3-p392.tar.gz
 ```
+## 解压xz文件
+tar -Jxf <file.xz>
 ***
 
 ## zip压缩命令
@@ -76,6 +78,8 @@ PATH="[old]:$JAVA_HOME/bin"
 export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib  
 export JAVA_HOME=/usr/local/jdk1.8.0_181
 ```
+
+export PATH=$PATH:directory
 ***
 
 ## 脚本文件
@@ -97,7 +101,8 @@ echo "------online scan end------"
 ```
 chmod 777 online_columninfo.sh
 ```
-
+### 更改dir中全部内容的权限
+chmod -R 777 <dir>
 ***
 
 ## 添加定时任务
