@@ -44,3 +44,10 @@ if (file.exists())
 
 # 添加Q_OBJECT后编译报错
 重新qmake
+
+# char*和QString的相互转换
+## QString转char*
+qstring.toStdString().c_str();
+
+## char * 转换为 QString
+QString(const QLatin1String &str);
