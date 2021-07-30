@@ -29,3 +29,11 @@ strftime()的语法是strftime(格式, 日期/时间, 修正符, 修正符, …)
 %% 百分号
 
 select strftime(‘%Y-%m’,日期)
+
+# Sql 中Collate用法
+collate在sql中是用来定义排序规则的。排序规则其实就是当比较两个字符串时，根据某种规则来确定哪个比较大，是否相等。各个数据库支持不同的排序规则。
+sqlite有三种build in的排序规则：
+
+BINARY	二进制比较，直接使用memcmp()比较
+NOCASE 	将26个大写字母转换为小写字母后进行与BINARY一样的比较
+RTRIM 	和BINARY一样，忽略结尾的空格
