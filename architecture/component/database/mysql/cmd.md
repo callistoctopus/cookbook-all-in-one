@@ -29,3 +29,22 @@ select version();
 
 ## 显示表结构
 desc ***;
+
+## 设置参数
+
+SHOW VARIABLES LIKE 'character_set_%';
+SHOW GLOBAL VARIABLES LIKE 'character_set_%';
+
+SET character_set_client = 'utf8';
+SET character_set_connection = 'utf8';
+SET character_set_database = 'utf8';
+SET character_set_results = 'utf8';
+SET character_set_server = 'utf8';
+SET character_set_results = 'utf8';
+
+SET GLOBAL  character_set_client = 'utf8';
+SET GLOBAL  character_set_connection = 'utf8';
+SET GLOBAL  character_set_database = 'utf8';
+SET GLOBAL  character_set_results = 'utf8';
+SET GLOBAL  character_set_server = 'utf8';
+SET GLOBAL  character_set_results = 'utf8';
