@@ -8,6 +8,9 @@ uname -srm
 或
 hostnamectl
 
+# 显示 Linux 系统架构
+uname -a
+
 ## linux系统间文件拷贝命令(scp)
 **scp** *src* *user*@*host*:*dst*
 
@@ -33,6 +36,17 @@ vi Gemfile
 输入你需要查找的关键字，回车
 如果要继续查找关键字，输入n
 向前查找，输入N（大写）
+
+
+## 查找文件
+find <path> -name <filename>
+
+## 查看文件属性
+file <filename>
+
+## 查看命令位置
+which <cmd>
+>>which gcc
 
 ### 向文件末尾追加
 echo 'add content'>>/home/data/test.sh

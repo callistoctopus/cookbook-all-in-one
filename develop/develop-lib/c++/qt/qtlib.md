@@ -1,5 +1,8 @@
 # QMap介绍与使用
 
+## linux 安装 qt5
+apt-get install qt5-default
+
 ## 定义
 QMap<QString,QString> m_map; 
 

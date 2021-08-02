@@ -24,6 +24,10 @@ exit
 6. vim /etc/mysql/mysql.conf.d/mysqld.cnf
    注释掉 bind-address          = 127.0.0.1
 
+## Mysql 8
+create user 'user'@'%' identified by '密码';
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'%';
+
 ## 查看版本
 select version();
 
