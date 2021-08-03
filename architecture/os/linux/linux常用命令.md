@@ -11,6 +11,9 @@ hostnamectl
 # 显示 Linux 系统架构
 uname -a
 
+# 显示系统32位还是64位
+getconf LONG_BIT
+
 ## linux系统间文件拷贝命令(scp)
 **scp** *src* *user*@*host*:*dst*
 

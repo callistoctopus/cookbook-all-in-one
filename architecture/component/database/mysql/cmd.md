@@ -1,3 +1,5 @@
+## 安装客户端库文件
+apt-get install libmysqlclient-dev
 
 ## 连接mysql服务器
 mysql -u root -p
