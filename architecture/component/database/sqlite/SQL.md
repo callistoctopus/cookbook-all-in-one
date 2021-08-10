@@ -37,3 +37,6 @@ sqlite有三种build in的排序规则：
 BINARY	二进制比较，直接使用memcmp()比较
 NOCASE 	将26个大写字母转换为小写字母后进行与BINARY一样的比较
 RTRIM 	和BINARY一样，忽略结尾的空格
+
+# sqlite3表格导出到csv
+sqlite3 -header -csv data.db "select * from log;" > xx.csv

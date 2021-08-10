@@ -4,3 +4,6 @@
 3. apt-get -y install build-essential
 4. apt-get -y install gcc g++
 5. apt-get -y install qtcreator
+
+## linux 安装 qt5
+apt-get install qt5-default

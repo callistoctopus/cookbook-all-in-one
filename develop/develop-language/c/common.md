@@ -106,3 +106,34 @@ for(int i = 0; i < 数组大小; i++){
     }
   }
 }
+
+
+# Linux下头文件搜索路径
+
+搜索顺序为：
+
+1.先搜索当前目录
+
+2.然后搜索-I指定的目录
+
+3.再搜索gcc的环境变量CPLUS_INCLUDE_PATH（C程序使用的是C_INCLUDE_PATH）
+
+4.最后搜索gcc的内定目录
+
+/usr/include
+/usr/local/include
+/usr/lib/gcc/x86_64-redhat-linux/4.1.1/include
+
+各目录存在相同文件时，先找到哪个使用哪个。
+
+
+# 库文件的搜索路径
+1.编译目标代码时指定的动态库搜索路径；
+
+2.环境变量LD_LIBRARY_PATH指定的动态库搜索路径；
+
+3.配置文件/etc/ld.so.conf中指定的动态库搜索路径；
+
+4.默认的动态库搜索路径/lib；
+
+5.默认的动态库搜索路径/usr/lib。
