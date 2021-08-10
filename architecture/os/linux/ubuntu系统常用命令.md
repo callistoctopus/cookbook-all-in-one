@@ -1,6 +1,13 @@
 # 版本信息
 lsb_release -a
 
+# 查看已安装的软件
+dpkg -l
+dpkg -l | grep <softname>
+
+# 查看软件版本
+aptitude show <softname>
+
 # 查找软件
 apt-cache search <softname>
 apt-cache madison <sofrname>
