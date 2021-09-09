@@ -10,6 +10,10 @@ https://www.runoob.com/git/git-install-setup.html
 git config --global user.name "John Doe"  
 git config --global user.email johndoe@example.com
 
+# 添加代理
+git config --global http.proxy http://gui-qiH:Z7D8tijA@10.205.1.13:8080 
+git config --global https.proxy http://gui-qiH:Z7D8tijA@10.205.1.13:8080
+
 ## 初期化命令
 git init
 
