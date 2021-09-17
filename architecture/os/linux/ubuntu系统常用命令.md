@@ -1,6 +1,21 @@
 # 版本信息
 lsb_release -a
 
+# 设置apt代理
+sudo gedit /etc/apt/apt.conf
+
+Acquire::http::Proxy "http://gui-qiH:Z7D8tijA@10.205.1.13:8080";
+
+# 配置curl,wget,pip代理
+sudo vim ~/.bashrc
+
+export http_proxy='http://gui-qiH:Z7D8tijA@10.205.1.13:8080'
+export https_proxy='http://gui-qiH:Z7D8tijA@10.205.1.13:8080'
+export ftp_proxy='http://gui-qiH:Z7D8tijA@10.205.1.13:8080'
+export no_proxy='localhost'
+
+source ~/.bashrc
+
 # 查看已安装的软件
 dpkg -l
 dpkg -l | grep <softname>
