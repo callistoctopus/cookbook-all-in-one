@@ -9,3 +9,6 @@ bash <(curl -L https://github.com/callistoctopus/cabin/releases/download/script/
 
 # kasm edge
 bash <(curl -L https://github.com/callistoctopus/cabin/releases/download/script/cos-ksam-edge.sh)
+
+# vpn
+bash <(curl -L https://github.com/callistoctopus/cabin/releases/download/script/docker-vpn.sh)
