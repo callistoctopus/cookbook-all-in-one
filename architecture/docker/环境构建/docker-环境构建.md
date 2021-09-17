@@ -73,9 +73,8 @@ sudo systemctl restart docker
 mkdir /etc/systemd/system/docker.service.d
 cat >/etc/systemd/system/docker.service.d/http_proxy.conf << EOF
 [Service]
-Environment="HTTP_PROXY=http://192.168.1.1:80/"       #代理服务器地址
-Environment="HTTPS_PROXY=http://192.168.1.1:80/"     #https
-Environment="NO_PROXY=localhost,127.0.0.0/8,docker-registry.somecorporation.com"    #哪些地址不需要走代理
+Environment="HTTP_PROXY=http://10.205.1.13:8080" 
+Environment="HTTPS_PROXY=http://10.205.1.13:8080"
 EOF
 systemctl daemon-reload
 systemctl restart docker

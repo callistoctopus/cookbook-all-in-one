@@ -16,6 +16,12 @@ docker pull ubuntu:13.10
 ## 删除镜像
 docker rmi hello-world
 
+## 导出镜像
+docker save <镜像 id> > ubuntu.tar
+
+## 导入镜像
+docker load < ubuntu.tar
+
 ## 设置镜像标签
 docker tag 860c279d2fec runoob/centos:dev
 docker tag 镜像ID，这里是 860c279d2fec ,用户名称、镜像源名(repository name)和新的标签名(tag)。
