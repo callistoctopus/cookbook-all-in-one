@@ -54,3 +54,6 @@ SET GLOBAL  character_set_database = 'utf8';
 SET GLOBAL  character_set_results = 'utf8';
 SET GLOBAL  character_set_server = 'utf8';
 SET GLOBAL  character_set_results = 'utf8';
+
+# MySQL 8.0 Public Key Retrieval is not allowed 错误的解决方法
+在连接后面添加 allowPublicKeyRetrieval=true
