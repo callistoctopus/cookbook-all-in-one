@@ -54,6 +54,7 @@ docker run -it --restart=on-failure ubuntu /bin/bash
 ubuntu: ubuntu 镜像。
 /bin/bash：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 /bin/bash。
 通过 -p 参数来设置不一样的端口
+-v:路径映射 <host/path>:<container/path>
 
 ## 退出终端
 exit
