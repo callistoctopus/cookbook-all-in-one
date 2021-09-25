@@ -102,8 +102,9 @@ apt-get install -y mysql-client
 
 # 安装Mysql
 apt-get install -y mysql-server
+systemctl start mysql
 mysql_secure_installation
-systemctl status mysql.service
+systemctl status mysql
 
 # 安装systemctl 
 apt-get -y install --reinstall systemd
