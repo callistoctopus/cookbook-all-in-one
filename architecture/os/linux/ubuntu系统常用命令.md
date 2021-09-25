@@ -107,3 +107,19 @@ systemctl status mysql.service
 
 # 安装systemctl 
 apt-get -y install --reinstall systemd
+
+# 开机启动时自动运行程序
+/etc/rc.d/rc.local 
+该文件通常是系统最后启动的脚本
+
+# 登录时自动运行程序
+用户登录时，bash先自动执行系统管理员建立的全局登录script
+/ect/profile
+
+# 退出登录时自动运行程序
+退出登录时，bash自动执行个人的退出登录脚本
+/.bash_logout
+
+# 定期自动运行程序
+Linux有一个称为crond的守护程序，主要功能是周期性地检查 /var/spool/cron目录下的一组命令文件的内容，并在设定的时间执行这些文件中的命令。
+用户可以通过crontab 命令来建立、修改、删除这些命令文件。
