@@ -1,5 +1,25 @@
 # 常用命令
 
+# 查看docker状态
+docker info
+
+# 查看docker硬盘状态
+docker system df
+
+# 清理docker硬盘（会删除已停止的容器）
+docker system prune
+
+# 修改容器镜像存贮空间大小
+systemctl stop docker
+
+vim /usr/lib/systemd/system/docker.service
+在 ExecStart=/usr/bin/dockerd 后面添加 --storage-driver devicemapper --storage-opt dm.loopdatasize=1000G --storage-opt dm.loopmetadatasize=10G --storage-opt dm.fs=ext4 --storage-opt dm.basesize=100G
+
+systemctl daemon-reload
+
+systemctl start docker
+
+
 # 登录私有仓库
 sudo docker login --username=auste**** registry.cn-hangzhou.aliyuncs.com
 
