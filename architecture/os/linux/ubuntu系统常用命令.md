@@ -97,17 +97,11 @@ apt -y install openjdk-11-jdk
 （5）重启SSH服务
 　命令：service ssh restart
 
-# 安装Mysql客户端
-apt-get install -y mysql-client
-
-# 安装Mysql
-apt-get install -y mysql-server
-systemctl start mysql
-mysql_secure_installation
-systemctl status mysql
-
 # 安装systemctl 
 apt-get -y install --reinstall systemd
+
+# 安装网络工具
+apt-get -y install net-tools
 
 # 开机启动时自动运行程序
 /etc/rc.d/rc.local 

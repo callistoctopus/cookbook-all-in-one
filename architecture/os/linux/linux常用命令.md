@@ -139,10 +139,12 @@ ssh root@localhost
 ```
 
 ## 追加用户权限
-su
+chmod 777 /etc/sudoers
 vi /etc/sudoers
 找到“root    ALL=(ALL)       ALL”一行，在下面插入新的一行
+user    ALL=(ALL)       ALL
 :wq! 保存并退出。
+chmod 555 /etc/sudoers
 
 ## 设置命令别名
 alias k=kubectl
