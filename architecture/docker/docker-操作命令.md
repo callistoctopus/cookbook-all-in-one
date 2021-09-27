@@ -8,12 +8,15 @@ docker system df
 
 # 清理docker硬盘（会删除已停止的容器）
 docker system prune
+docker container prune # 删除所有退出状态的容器
+docker volume prune # 删除未被使用的数据卷
+docker image prune # 删除 dangling 或所有未被使用的镜像
 
 # 修改容器镜像存贮空间大小
 systemctl stop docker
 
 vim /usr/lib/systemd/system/docker.service
-在 ExecStart=/usr/bin/dockerd 后面添加 --storage-driver devicemapper --storage-opt dm.loopdatasize=1000G --storage-opt dm.loopmetadatasize=10G --storage-opt dm.fs=ext4 --storage-opt dm.basesize=100G
+在 ExecStart=/usr/bin/dockerd 后面添加 --storage-driver devicemapper --storage-opt dm.loopdatasize=35G --storage-opt dm.loopmetadatasize=10G --storage-opt dm.fs=ext4 --storage-opt dm.basesize=20G
 
 systemctl daemon-reload
 
