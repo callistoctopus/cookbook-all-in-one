@@ -40,8 +40,14 @@ apt-get install zip
 apt-get -y remove firefox
 apt-get -y autoremove
 
+# 软件修复
+apt --fix-broken install
+
 # 安装deb文件 
 dpkg -i <package.deb>
+
+# 7z
+apt-get install p7zip-full
 
 ## 解压Zip压缩文件
 apt-get install unzip
@@ -86,7 +92,7 @@ apt -y install openjdk-11-jdk
 　　命令：ps -e|grep ssh  查看SSH服务是否开启，或者通过命令：service sshd status 可以查看某个服务的状态。
 
 （2）安装SSH服务
- 　  通过apt-get 安装，命令：apt-get install ssh 
+ 　  通过apt-get 安装，命令：apt-get install ssh -y
 
 （3）启动SSH服务
 　  命令：sudo /etc/init.d/ssh start
@@ -118,3 +124,6 @@ apt-get -y install net-tools
 # 定期自动运行程序
 Linux有一个称为crond的守护程序，主要功能是周期性地检查 /var/spool/cron目录下的一组命令文件的内容，并在设定的时间执行这些文件中的命令。
 用户可以通过crontab 命令来建立、修改、删除这些命令文件。
+
+# 解决中文乱码
+sudo apt-get install fonts-droid-fallback ttf-wqy-zenhei ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming

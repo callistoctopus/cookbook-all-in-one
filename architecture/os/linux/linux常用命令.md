@@ -66,11 +66,13 @@ curl https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p392.tar.gz --output ru
 ```
 ***
 
+# 压缩命令
+tar -czvf <name>.tar.gz <needcomprose>
+
 ## 解压命令
 **tar** **-xzvf** *压缩文件名* 
-``` 
 tar -xzvf ruby-1.9.3-p392.tar.gz
-```
+
 ## 解压xz文件
 tar -Jxf <file.xz>
 ***
@@ -78,11 +80,13 @@ tar -Jxf <file.xz>
 ## zip压缩命令
 zip -r <name>.zip <dir>
 
+## 7z解压缩
+7za a -t7z -m0=lzma2 -mx=9 -mmt=4 <name>.7z <needcomprose>
+7z x <name>.7z
+
 ## 运行命令
 **./**<命令>  
-```
 ./configure
-```
 ***
 
 ## 查看所有环境变量

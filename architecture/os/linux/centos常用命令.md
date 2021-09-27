@@ -118,3 +118,7 @@ hostnamectl set-hostname
 gcc: yum -y install gcc
 g++: yum -y install gcc-c++
 cmake: install -y cmake
+
+# 7z
+yum -y install epel-release
+yum -y install p7zip p7zip-plugins
