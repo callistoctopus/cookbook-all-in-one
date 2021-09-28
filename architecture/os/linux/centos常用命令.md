@@ -26,6 +26,29 @@ proxy=http://192.168.2.56:8080
 proxy_username=hanzhc
 proxy_password=19920104Caishuang 
 
+# 设置镜像
+
+1. 备份
+   mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+
+2. 下载新的 CentOS-Base.repo 到 /etc/yum.repos.d/
+   CentOS 6
+   wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-6.repo
+   或者
+   curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-6.repo
+
+   CentOS 7
+   wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+   或者
+   curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+
+   CentOS 8
+   wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-8.repo
+   或者
+   curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-8.repo
+
+3. 运行 yum makecache 生成缓存
+
 ## 软件更新
 **yum update -y **
 

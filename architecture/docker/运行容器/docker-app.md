@@ -37,6 +37,51 @@ docker run --name RattyDAVE20.04 \
            -dit --restart unless-stopped \
            rattydave/docker-ubuntu-xrdp-mate-custom:20.04
 
+# docker-centos-gnome-vnc
+docker pull centos:7
+docker run --name centos-desktop-vnc --privileged -p 5901:5901 --ulimit memlock=-1 -td centos:7 /usr/sbin/init
+docker exec -it centos-desktop-vnc bash
+
+curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
+yum makecache
+
+yum update -y
+yum grouplist
+yum groupinstall -y 'Server with GUI' --allowerasing 
+yum groupinstall -y 'GNOME Desktop'
+
+unlink  /etc/systemd/system/default.target
+ln -sf  /lib/systemd/system/graphical.target /etc/systemd/system/default.target
+
+yum -y install tigervnc-server tigervnc-server-module
+
+cp /lib/systemd/system/vncserver@.service /lib/systemd/system/vncserver@:1.service
+vi /lib/systemd/system/vncserver@:1.service
+
+[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
+
+[Service]
+Type=simple
+
+ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
+ExecStart=/usr/sbin/runuser -l root -c "/usr/bin/vncserver %i"
+PIDFile=/home/root/.vnc/%H%i.pid
+ExecStop=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
+
+[Install]
+WantedBy=multi-user.target
+
+
+vncserver
+
+systemctl daemon-reload
+systemctl start vncserver@:1.service && systemctl enable vncserver@:1.service
+
+systemctl disable firewalld.service
+systemctl stop firewalld.service
+
 # mysql
 
 docker pull mysql:5.7   # 拉取 mysql 5.7
