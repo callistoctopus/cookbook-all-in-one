@@ -54,9 +54,9 @@ proxy_password=19920104Caishuang
 
 ## 安装软件
 **yum install** *软件名称*
-```
 yum install libyaml-devel
-```
+
+rpm -i <soft>.rpm
 
 # 查看IP
  ip addr
