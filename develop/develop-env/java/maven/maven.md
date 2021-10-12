@@ -1,19 +1,32 @@
+# 通用
+
 1. 官网下载地址
 https://maven.apache.org/download.cgi
 
-2. 下载并解压到指定目录
-
-3. 添加环境变量
+# windows
+1. 解压到指定目录
+2. 添加环境变量
 MAVEN_HOME <maven解压目录>
 PATH += %MAVEN_HOME%/bin
 
-4. MAVEN配置
+# linux
+2. mkdir /usr/lib/maven
+3. tar -xzvf apache-maven-3.8.3-bin.tar.gz -C /usr/lib/maven
+4. vi /etc/profile
+5. #set maven environment
+export MAVEN_HOME=/usr/lib/maven/apache-maven-3.8.3 
+export PATH=${MAVEN_HOME}/bin:$PATH 
+6. source /etc/profile
+
+# 通用
+
+7. MAVEN配置
 配置文件路径 <maven解压目录>/conf/settings.xml
 
-# 配置本地仓库
+配置本地仓库
 <localRepository>D:\apache-maven-3.6.1\localRepository</localRepository>
 
-# 配置代理
+配置代理
 <proxy>
     <id>fe-proxy</id>
     <active>true</active>
@@ -24,7 +37,7 @@ PATH += %MAVEN_HOME%/bin
     <port>8080</port>
 </proxy>
 
-# 配置中央仓库
+配置中央仓库
 <mirror>
     <id>alimaven</id>
     <mirrorOf>central</mirrorOf>
