@@ -71,7 +71,7 @@ tar -czvf <name>.tar.gz <needcomprose>
 
 ## 解压命令
 **tar** **-xzvf** *压缩文件名* 
-tar -xzvf ruby-1.9.3-p392.tar.gz
+tar -xzvf ruby-1.9.3-p392.tar.gz -C <dstpath>
 
 ## 解压xz文件
 tar -Jxf <file.xz>

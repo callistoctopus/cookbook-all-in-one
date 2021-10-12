@@ -122,6 +122,9 @@ docker port bf08b7f2cd89
 ## 查看容器内部的标准输出
 docker logs -f bf08b7f2cd89
 
+# 查看容器内存及CPU使用情况
+docker stats contrainer id
+
 ## 查看容器内部运行的进程
 docker top wizardly_chandrasekhar
 

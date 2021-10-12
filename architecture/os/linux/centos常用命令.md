@@ -58,6 +58,9 @@ yum install libyaml-devel
 
 rpm -i <soft>.rpm
 
+## 查看库的依赖包
+yum provides */<libname>
+
 # 查看IP
  ip addr
 
