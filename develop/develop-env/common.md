@@ -15,6 +15,14 @@ linux 默认回去/lib和/usr/lib目录下查找库
 在 /etc/ld.so.conf 文件中添加库的搜索路径
 运行 /sbin/ldconfig 命令更新 /etc/ld.so.cache
 
+# 添加C头文件路径
+C_INCLUDE_PATH=<path>
+export C_INCLUDE_PATH
+
+# 添加C++头文件路径
+CPLUS_INCLUDE_PATH=<path>
+export CPLUS_INCLUDE_PATH
+
 # 安装Openssl
 sudo apt-get install libssl-dev
 
