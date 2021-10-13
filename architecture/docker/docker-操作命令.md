@@ -3,6 +3,28 @@
 # 查看docker状态
 docker info
 
+# 切换docker context
+docker context create <context name> --docker "host=ssh://<user>@<host>"
+docker context use <context name>
+
+# windows openssl ssh
+PowerShell 窗口里面运行 （administrator 模式）:
+
+ssh-keygen
+
+把这个id_rsa.pub 传送到远程主机，复制成文件： ~/.ssh/authorized_keys
+如果远程主机上这个authorized_keys已经存在，就添加到后面
+cat id_rsa.pub >> ~/.ssh/authorized_keys
+
+Set-Service ssh-agent -StartupType "Automatic"
+Start-Service ssh-agent
+
+ssh-add ~/.ssh/id_rsa
+
+测试一下，无需密码直接ssh连接到远程主机:
+
+ssh <user>@<host>
+
 # 查看docker硬盘状态
 docker system df
 
