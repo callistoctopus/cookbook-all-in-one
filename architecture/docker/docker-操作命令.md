@@ -152,3 +152,20 @@ docker top wizardly_chandrasekhar
 
 ## 查看 Docker 的底层信息
 docker inspect wizardly_chandrasekhar
+
+
+# docker 网络
+## 查看网络
+docker network ls
+
+## 创建网络
+docker network create my_net
+
+## 删除网络
+docker network rm my_net
+
+## 指定网络
+--network my_net 
+
+## 指定网络别名
+--network-alias php
