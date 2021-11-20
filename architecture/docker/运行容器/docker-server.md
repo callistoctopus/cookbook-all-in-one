@@ -34,7 +34,7 @@ docker run -itd --rm --privileged=true --name tomcat \
 # nginx
 ## 方法一
 docker run -itd --rm --privileged=true --name nginx \
-     -p 224:22 -p 443:443 \
+     -p 224:22 -p 443:443 -p 6061:6061 \
      -v /var/work/volumes/config/nginx:/etc/nginx \
      callistoctopus/server:U18PSAN-u18psa-nginx
 
