@@ -25,11 +25,18 @@ docker run -itd --privileged=true --name tomcat -p 220:22 -p 80:8080 registry.cn
 docker run -itd --privileged=true --name tomcat -p 220:22 -p 80:8080 callistoctopus/server:U18PSAJ11T85-u18psa-java11-tomcat8.5
 docker cp tomcat:/usr/local/apache-tomcat-8.5.72 /var/work/volumes
 
-docker run -itd --rm --privileged=true --name tomcat -p 228:22 -p 80:8080 -v /var/work/volumes/apache-tomcat-8.5.72:/usr/local/apache-tomcat-8.5.72 callistoctopus/server:U18PSAJ11T85-u18psa-java11-tomcat8.5
+docker run -itd --rm --privileged=true --name tomcat \
+     -p 228:22 -p 80:8080 \
+     -v /var/work/volumes/config/apache-tomcat-8.5.72/conf:/usr/local/apache-tomcat-8.5.72/conf \
+     -v /var/work/projects/client/mobile/browser/html/app:/usr/local/apache-tomcat-8.5.72/webapps/app \
+     callistoctopus/server:U18PSAJ11T85-u18psa-java11-tomcat8.5
 
 # nginx
 ## 方法一
-docker run -itd --rm --privileged=true --name nginx -p 224:22 -p 443:443 -v /var/work/volumes/nginx:/etc/nginx callistoctopus/server:U18PSAN-u18psa-nginx
+docker run -itd --rm --privileged=true --name nginx \
+     -p 224:22 -p 443:443 \
+     -v /var/work/volumes/config/nginx:/etc/nginx \
+     callistoctopus/server:U18PSAN-u18psa-nginx
 
 ## 方法二
 mkdir -p /home/nginx/www /home/nginx/logs /home/nginx/conf
