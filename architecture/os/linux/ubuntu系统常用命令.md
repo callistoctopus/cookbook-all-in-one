@@ -113,6 +113,25 @@ apt-get -y install net-tools
 /etc/rc.d/rc.local 
 该文件通常是系统最后启动的脚本
 
+# Ubuntu 18.04 rc.local 设置开机自启动
+1. 修改rc-local.service
+/lib/systemd/system/rc-local.service新增：
+[Install]
+WantedBy=multi-user.target
+Alias=rc-local.service
+
+2. 设置开机自启动rc-local
+systemctl enable rc-local
+
+3. 创建/etc/rc.local
+cat > /etc/rc.local << EOF
+#!/bin/bash
+echo "test rc.local " > /tmp/rctest.log
+EOF
+
+4. 新增执行权限
+chmod +x /etc/rc.local
+
 # 登录时自动运行程序
 用户登录时，bash先自动执行系统管理员建立的全局登录script
 /ect/profile
@@ -127,3 +146,12 @@ Linux有一个称为crond的守护程序，主要功能是周期性地检查 /va
 
 # 解决中文乱码
 sudo apt-get install fonts-droid-fallback ttf-wqy-zenhei ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming
+
+# ubuntu调整分辨率
+xrandr
+cvt 2560 1440
+xrandr --newmode "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
+xrandr --addmode VNC-0 "2560x1440_60.00"
+
+# ubuntu 桌面版添加root密码
+sudo passwd root

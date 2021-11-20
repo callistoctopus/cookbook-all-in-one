@@ -22,11 +22,16 @@ DNS1=192.168.110.1
 # 为 yum 设置网络代理
 
 在/etc/yum.conf中添加：
-proxy=http://192.168.2.56:8080
-proxy_username=hanzhc
-proxy_password=19920104Caishuang 
+proxy=http://10.205.1.13:8080
+proxy_username=gui-qiH
+proxy_password=Z7D8tijA
 
-# 设置镜像
+# 设置代理
+HTTP_PROXY=http://gui-qiH:Z7D8tijA@10.205.1.13:8080
+HTTPS_PROXY=http://gui-qiH:Z7D8tijA@10.205.1.13:8080
+export HTTP_PROXY HTTPS_PROXY
+
+# 设置yum镜像
 
 1. 备份
    mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
@@ -47,13 +52,15 @@ proxy_password=19920104Caishuang
    或者
    curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-8.repo
 
-3. 运行 yum makecache 生成缓存
+3. sed -i -e '/mirrors.cloud.aliyuncs.com/d' -e '/mirrors.aliyuncs.com/d' /etc/yum.repos.d/CentOS-Base.repo
+
+4. 运行 yum makecache 生成缓存
 
 ## 软件更新
-**yum update -y **
+yum update -y
 
 ## 安装软件
-**yum install** *软件名称*
+yum install -y <app>
 yum install libyaml-devel
 
 rpm -i <soft>.rpm

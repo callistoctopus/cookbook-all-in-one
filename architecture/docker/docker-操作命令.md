@@ -135,7 +135,7 @@ cat docker/ubuntu.tar | docker import - test/ubuntu:v1
 docker import http://example.com/exampleimage.tgz example/imagerepo
 
 ## 构建镜像
-docker build -t nginx:v3 .
+docker build -t nginx:v3 -f <dockerfile> .
 注：最后的 . 代表本次执行的上下文路径
 
 ## 查看到容器的端口映射

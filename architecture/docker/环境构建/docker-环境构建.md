@@ -73,8 +73,8 @@ sudo systemctl restart docker
 mkdir /etc/systemd/system/docker.service.d
 cat >/etc/systemd/system/docker.service.d/http_proxy.conf << EOF
 [Service]
-Environment="HTTP_PROXY=http://10.205.1.13:8080" 
-Environment="HTTPS_PROXY=http://10.205.1.13:8080"
+Environment="HTTP_PROXY=http://gui-qiH:Z7D8tijA@10.205.1.13:8080" 
+Environment="HTTPS_PROXY=http://gui-qiH:Z7D8tijA@10.205.1.13:8080"
 EOF
 systemctl daemon-reload
 systemctl restart docker
