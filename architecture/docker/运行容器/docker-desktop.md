@@ -1,8 +1,21 @@
-# kasmweb desktop-vscode
-docker run -itd --shm-size=512m -p 443:6901 --restart=on-failure -u root --name vscode -e VNC_PW=password -e VNC_RESOLUTION=2560x1440 -v /var/run/docker.sock:/var/run/docker.sock -v /var/work:/var/work  callistoctopus/desktop:kasmweb-vscode-edge-office
+# kasmweb dev
+docker run -itd -u root \
+    -p 443:6901 \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /var/work:/var/work \
+    -e VNC_PW=password -e VNC_RESOLUTION=2560x1440 \
+    --restart=on-failure --shm-size=512m \
+    --name dev \
+    callistoctopus/desktop:kasmweb-vscode-edge-office
 
 # kasmweb desktop (official)
-docker run -itd --shm-size=512m -p 6901:6901 -u root -e VNC_PW=password kasmweb/desktop:1.9.0
+docker run -itd \
+    --shm-size=512m \
+    -p 6901:6901 \
+    -u root \
+    -e VNC_PW=password 
+    kasmweb/desktop:1.9.0
+
 https://<ip>:6901/
 User : kasm_user
 Password: password
