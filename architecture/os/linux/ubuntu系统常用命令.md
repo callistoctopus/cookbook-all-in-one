@@ -36,6 +36,9 @@ apt -y install *软件名称*
 apt-get install unzip
 apt-get install zip
 
+## apt-get安装指定版本
+apt -y install *软件名称*=*软件版本*
+
 # 软件卸载
 apt-get -y remove firefox
 apt-get -y autoremove
