@@ -18,8 +18,20 @@ docker run -itd \
     -e VNC_USER=gui-qi \
     -e VNC_PW=password \
     -e VNC_RESOLUTION=2560x1440 \
-    kasmweb/desktop:1.9.0
+    --name desktop \
+    kasmweb/desktop:1.10.0
 
+# kasmweb edge (official)
+docker run -itd \
+    --shm-size=512m \
+    -p 6901:6901 \
+    -u root \
+    -e VNC_USER=gui-qi \
+    -e VNC_PW=password \
+    -e VNC_RESOLUTION=2560x1440 \
+    --name desktop \
+    kasmweb/edge:1.10.0
+    
 https://<ip>:6901/
 User : gui-qi
 Password: password
