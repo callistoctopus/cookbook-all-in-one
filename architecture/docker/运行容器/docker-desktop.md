@@ -3,7 +3,9 @@ docker run -itd -u root \
     -p 443:6901 \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /var/work:/var/work \
-    -e VNC_PW=password -e VNC_RESOLUTION=2560x1440 \
+    -e VNC_USER=gui-qi \
+    -e VNC_PW=password \
+    -e VNC_RESOLUTION=2560x1440 \
     --restart=on-failure --shm-size=512m \
     --name dev \
     callistoctopus/desktop:kasmweb-vscode-edge-office
@@ -13,11 +15,13 @@ docker run -itd \
     --shm-size=512m \
     -p 6901:6901 \
     -u root \
-    -e VNC_PW=password 
+    -e VNC_USER=gui-qi \
+    -e VNC_PW=password \
+    -e VNC_RESOLUTION=2560x1440 \
     kasmweb/desktop:1.9.0
 
 https://<ip>:6901/
-User : kasm_user
+User : gui-qi
 Password: password
 
 # kasmweb desktop-deluxe (official)
