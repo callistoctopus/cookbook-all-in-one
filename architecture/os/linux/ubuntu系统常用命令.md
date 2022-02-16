@@ -158,3 +158,23 @@ xrandr --addmode VNC-0 "2560x1440_60.00"
 
 # ubuntu 桌面版添加root密码
 sudo passwd root
+
+# ubuntu20 安装搜狗输入法
+https://pinyin.sogou.com/linux/help.php
+
+1、更新源在终端执行 
+sudo apt update
+2、安装fcitx输入法框架
+ 1. 在终端输入 
+ sudo apt install fcitx
+ 2. 卸载系统ibus输入法框架在终端执行 
+ sudo apt purge ibus
+ 3. 设置fcitx开机自启动在终端执行
+ sudo cp /usr/share/applications/fcitx.desktop /etc/xdg/autostart/
+3、安装搜狗输入法
+ 1. 在官网下载搜狗输入法安装包，并安装，安装命令 
+ sudo dpkg -i 安装包名
+ 2. 安装输入法依赖在终端执行
+ sudo apt install libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2
+ sudo apt install libgsettings-qt1
+4、重启电脑、调出输入法

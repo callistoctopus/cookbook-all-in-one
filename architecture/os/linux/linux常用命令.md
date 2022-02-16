@@ -197,3 +197,75 @@ xrandr --output <OUTPUT> --mode "2560x1440_60.00"
 
 # 跟踪网络路由
 traceroute www.baidu.com
+
+# wine
+https://wiki.winehq.org/Ubuntu
+
+sudo dpkg --add-architecture i386 
+wget -nc https://dl.winehq.org/wine-builds/winehq.key
+sudo apt-key add winehq.key
+sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
+sudo apt update
+sudo apt install --install-recommends winehq-staging
+
+winecfg
+
+## wine 字体乱码
+
+simsun.ttc
+Windows: C:\Windows\Fonts
+Linux(wine): ~/.wine/drive_c/windows/fonts
+
+chg+font.reg
+
+REGEDIT4
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontLink\SystemLink]
+"Lucida Sans Unicode"="simsun.ttc"
+"Microsoft Sans Serif"="simsun.ttc"
+"MS Sans Serif"="simsun.ttc"
+"Tahoma"="simsun.ttc"
+"Tahoma Bold"="simsun.ttc"
+"SimSun"="simsun.ttc"
+"Arial"="simsun.ttc"
+"Arial Black"="simsun.ttc"
+
+regedit
+
+# Ubuntu下解决中文显示为方块
+1、从window系统中的字体库复制需要的中文库到Linux系统中
+windows字体库路径：C:\Windows\Fonts
+这里我自己选择的是宋体simsun.ttc这个文件
+
+2、上传到Linux系统中
+2.1在linux字体目录创建一个文件夹用于存放添加的字体库(Linux默认的字体目录：/usr/share/fonts)
+因此我们跳转到上面的目录中并创建一个目录：
+cd /usr/share/fonts——>mkdir fontpackages
+
+2.2复制字体库到新建的字体库目录
+cp simsun.tcc /usr/share/fonts/fontpackages
+
+3、加载字体库中的字体
+fc-cache -fv
+
+4、查看Linux上面的全部字体
+fc-list
+
+
+首先，安装中文支持包language-pack-zh-hans：
+sudo apt-get install language-pack-zh-hans
+
+然后，修改/etc/environment（在文件的末尾追加）：
+LANG="zh_CN.UTF-8"
+LANGUAGE="zh_CN:zh:en_US:en"
+
+再修改/var/lib/locales/supported.d/local(没有这个文件就新建，同样在末尾追加)：
+en_US.UTF-8 UTF-8
+zh_CN.UTF-8 UTF-8
+zh_CN.GBK GBK
+zh_CN GB2312
+
+最后，执行命令：
+sudo locale-gen
+
+对于中文乱码是空格的情况，安装中文字体解决
+sudo apt-get install fonts-droid-fallback ttf-wqy-zenhei ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming

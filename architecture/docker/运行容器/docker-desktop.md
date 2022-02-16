@@ -43,7 +43,17 @@ User : kasm_user
 Password: password
 
 # ubuntu-desktop-lxde-vnc (official)
-docker run -itd -p 6080:80 -p 5900:5900  -e RESOLUTION=1920x1080 -e VNC_PASSWORD=password dorowu/ubuntu-desktop-lxde-vnc
+mkdir -p ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl/nginx.key -out ssl/nginx.crt
+docker run -itd \
+    -p 443:443 \
+    -e SSL_PORT=443 -e RESOLUTION=2560x1440 \
+    -v ${PWD}/ssl:/etc/nginx/ssl \
+    -v /dev/shm:/dev/shm \
+    --name desktopu20 \
+    dorowu/ubuntu-desktop-lxde-vnc 
+
+https://<ip>
 
 # ubuntu-lxde-vnc (private)
 docker run -itd -p 6080:80 -p 5900:5900  -e RESOLUTION=1920x1080 -e VNC_PASSWORD=password callistoctopus/desktop:ubuntu-lxde-vnc
