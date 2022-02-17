@@ -50,7 +50,7 @@ docker run -itd \
     -e SSL_PORT=443 -e RESOLUTION=2560x1440 \
     -v ${PWD}/ssl:/etc/nginx/ssl \
     -v /dev/shm:/dev/shm \
-    --name desktopu20 \
+    --name fuji2022 \
     dorowu/ubuntu-desktop-lxde-vnc 
 
 https://<ip>
