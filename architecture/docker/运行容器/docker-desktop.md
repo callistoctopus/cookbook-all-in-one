@@ -47,9 +47,15 @@ mkdir -p ssl
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl/nginx.key -out ssl/nginx.crt
 docker run -itd \
     -p 443:443 \
-    -e SSL_PORT=443 -e RESOLUTION=2560x1440 \
+    -e SSL_PORT=443 \
+    -e RESOLUTION=2560x1440 \
+    -e USER=guiqi \
+    -e PASSWORD=*#gq016#* \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /var/work:/var/work \
     -v ${PWD}/ssl:/etc/nginx/ssl \
     -v /dev/shm:/dev/shm \
+    --restart=on-failure \
     --name fuji2022 \
     dorowu/ubuntu-desktop-lxde-vnc 
 
