@@ -178,3 +178,12 @@ sudo apt update
  sudo apt install libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2
  sudo apt install libgsettings-qt1
 4、重启电脑、调出输入法
+
+# 修改时区和时间
+tzselect 
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+date -R
+
+date -s MM/DD/YY
+date -s hh:mm:ss
+hwclock --systohc
