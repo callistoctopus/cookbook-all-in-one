@@ -49,13 +49,11 @@ docker run -itd \
     -p 443:443 \
     -e SSL_PORT=443 \
     -e RESOLUTION=2560x1440 \
-    -e USER=guiqi \
-    -e PASSWORD=*#gq016#* \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /var/work:/var/work \
     -v ${PWD}/ssl:/etc/nginx/ssl \
     -v /dev/shm:/dev/shm \
-    --restart=on-failure \
+    --restart=always \
     --name fuji2022 \
     dorowu/ubuntu-desktop-lxde-vnc 
 
