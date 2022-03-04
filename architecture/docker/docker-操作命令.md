@@ -169,3 +169,10 @@ docker network rm my_net
 
 ## 指定网络别名
 --network-alias php
+
+# 修改端口映射
+systemctl stop docker 
+cd /var/lib/docker/container/[docker id]
+修改hostconfig.json文件
+修改config.v2.json文件
+systemctl start docker
