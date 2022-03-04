@@ -17,6 +17,8 @@ docker run -itd \
 # java 17
 docker run -itd \
     -p 222:22 \
+    -p 8080:8080 \
+    -p 8443:8443 \
     -v /var/work:/var/work \
     --privileged=true \
     --name java17 \
