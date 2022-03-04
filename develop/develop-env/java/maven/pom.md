@@ -30,6 +30,19 @@
     </executions>
 </plugin>
 
+<resources>
+    <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+    </resource>
+    <resource>
+        <directory>src/main/java</directory>
+        <includes>
+            <include>**/*.xml</include>
+        </includes>
+    </resource>
+</resources>
+
 maven-assembly-plugin插件的配置文件
 
 <?xml version='1.0' encoding='UTF-8'?>
