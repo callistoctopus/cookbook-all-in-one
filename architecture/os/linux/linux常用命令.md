@@ -232,4 +232,8 @@ REGEDIT4
 regedit
 
 在WeChat.desktop中追加
-env LANG=zh_CN.UTF-8 GTK_IM_MODULE="fcitx" QT_IM_MODULE="fcitx" XMODIFIERS="@im=fcitx" 
+env LANG=zh_CN.UTF-8 GTK_IM_MODULE="fcitx" QT_IM_MODULE="fcitx" XMODIFIERS="@im=fcitx"
+
+## wine卸载软件
+
+wine uninstaller
