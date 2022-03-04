@@ -47,6 +47,8 @@ mkdir -p ssl
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl/nginx.key -out ssl/nginx.crt
 docker run -itd \
     -p 443:443 \
+    -p 801:801 \
+    -p 4431:4431 \
     -e SSL_PORT=443 \
     -e RESOLUTION=2560x1440 \
     -v /var/run/docker.sock:/var/run/docker.sock \
