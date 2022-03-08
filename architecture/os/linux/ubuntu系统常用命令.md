@@ -48,6 +48,7 @@ apt --fix-broken install
 
 # 安装deb文件 
 dpkg -i <package.deb>
+dpkg -r <package.deb>
 
 # 7z
 apt-get install p7zip-full
