@@ -30,3 +30,10 @@ docker run -itd \
     --privileged=true \
     --name java17 \
     callistoctopus/language:U18PSAVSJ17M38-u18psav-java17-maven3.8
+
+# python
+docker run -itd \
+    -v /var/work:/var/work \
+    -w /usr/src/myapp \
+    --name python3 \
+    python:3 
