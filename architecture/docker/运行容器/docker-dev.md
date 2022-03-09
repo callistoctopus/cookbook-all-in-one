@@ -36,4 +36,4 @@ docker run -itd \
     -v /var/work:/var/work \
     -w /usr/src/myapp \
     --name python3 \
-    python:3 
+    python:3.8 
