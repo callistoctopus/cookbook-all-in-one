@@ -41,7 +41,6 @@ docker run -itd \
 # faceswap
 docker run -itd \
     -v /var/work:/var/work \
-    -w /usr/src/myapp \
     --name faceswap \
     python:3.8 
 
