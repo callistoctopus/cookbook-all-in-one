@@ -37,3 +37,25 @@ docker run -itd \
     -w /usr/src/myapp \
     --name python3 \
     python:3.8 
+
+# faceswap
+docker run -itd \
+    -v /var/work:/var/work \
+    -w /usr/src/myapp \
+    --name faceswap \
+    python:3.8 
+
+https://github.com/deepfakes/faceswap/releases
+
+conda activate faceswap
+
+apt-get install ffmpeg libsm6 libxext6  -y
+
+python faceswap.py extract -i /var/work/faceswap/input/putin.mp4 -o /var/work/faceswap/output/putin/
+python faceswap.py extract -i /var/work/faceswap/input/trump.mp4 -o /var/work/faceswap/output/trump/
+
+python faceswap.py train -A /var/work/faceswap/output/putin/ -B /var/work/faceswap/output/trump/ -m /var/work/faceswap/model/p_t
+
+python faceswap.py convert -i /var/work/faceswap/input/putin.mp4 -o /var/work/faceswap/converted/p_t/ -m /var/work/faceswap/model/p_t
+
+ffmpeg -i video-frame-%0d.png -c:v libx264 -vf "fps=25,format=yuv420p" out.mp4
