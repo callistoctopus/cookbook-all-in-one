@@ -40,7 +40,7 @@ docker run -itd \
 
 # faceswap
 docker run -itd \
-    -v /var/work:/var/work \
+    -v /var/work/projects/sdk/faceswap:/home/keiki/faceswap \
     --name faceswap \
     python:3.8 
 
