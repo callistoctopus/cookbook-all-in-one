@@ -38,6 +38,13 @@ docker run -itd \
     --name python3 \
     python:3.8 
 
+# node
+docker run -itd \
+    -v /var/work:/var/work \
+    -p 80:80 \
+    --name node \
+    node:lts-alpine
+
 # faceswap
 docker run -itd \
     -v /var/work/projects/sdk/faceswap:/home/keiki/faceswap \

@@ -12,9 +12,6 @@ docker exec -it c68150755368 /bin/sh
 docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp gcc:4.9 gcc -o myapp myapp.c
 docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp gcc:4.9 make
 
-# node
-docker run -it --rm --name my-running-script -v "$PWD":/usr/src/app -w /usr/src/app node:8 node your-daemon-or-script.js
-
 <dockerfile>
 FROM node:10
 EXPOSE 8888
