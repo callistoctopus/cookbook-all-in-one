@@ -110,13 +110,6 @@ vi /etc/ssh/sshd_config
 #PermitRootLogin yes -> PermitRootLogin yes
 systemctl restart sshd
 
-# 添加用户
-adduser linuxidc
-passwd linuxidc
-
-# 切换用户名
-su - 用户名
-
 # 安装httpd
 yum install httpd
 

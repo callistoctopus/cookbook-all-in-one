@@ -34,6 +34,21 @@ vi Gemfile
 ### 保存文件命令
 **wq**
 
+# 添加用户
+adduser linuxidc
+passwd linuxidc
+
+# 切换用户名
+su - 用户名
+
+## 追加用户权限
+chmod 777 /etc/sudoers
+vi /etc/sudoers
+找到“root    ALL=(ALL)       ALL”一行，在下面插入新的一行
+user    ALL=(ALL)       ALL
+:wq! 保存并退出。
+chmod 555 /etc/sudoers
+
 ### 查找文件
 命令模式下输入“/字符串”，例如“/Section 3”
 输入你需要查找的关键字，回车
@@ -141,14 +156,6 @@ crontab -e
 ```
 ssh root@localhost
 ```
-
-## 追加用户权限
-chmod 777 /etc/sudoers
-vi /etc/sudoers
-找到“root    ALL=(ALL)       ALL”一行，在下面插入新的一行
-user    ALL=(ALL)       ALL
-:wq! 保存并退出。
-chmod 555 /etc/sudoers
 
 ## 设置命令别名
 alias k=kubectl
