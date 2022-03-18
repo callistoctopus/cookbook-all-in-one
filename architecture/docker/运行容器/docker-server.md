@@ -65,20 +65,36 @@ use admin
 db.createUser({user:"root",pwd:"toor",roles:[{role:'root',db:'admin'}]})   //创建用户,此用户创建成功,则后续操作都需要用户认证
 exit
 
-# rabbit
-docker pull rabbitmq:management
-docker run -d --name rabbit --restart=on-failure -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=root -e RABBITMQ_DEFAULT_PASS=toor rabbitmq:management
-http://<hostname>:15672
-
 # redis
 docker pull redis
 docker run -itd --name redis --restart=on-failure -p 6379:6379 redis --requirepass "toor"
 
 # vpn
-
-docker run --name vpn -e VPN_IPSEC_PSK=z7q9ihayuJhNJn7NVYmf -e VPN_USER=vpnuser -e VPN_PASSWORD=b2KBjGm4kZK8SkAh --restart=always -v ikev2-vpn-data:/etc/ipsec.d -p 500:500/udp -p 4500:4500/udp -d --privileged hwdsl2/ipsec-vpn-server
+docker run \
+     --name vpn \
+     -e VPN_IPSEC_PSK=z7q9ihayuJhNJn7NVYmf \
+     -e VPN_USER=vpnuser \
+     -e VPN_PASSWORD=b2KBjGm4kZK8SkAh \
+     --restart=always \
+     -v ikev2-vpn-data:/etc/ipsec.d \
+     -p 500:500/udp \
+     -p 4500:4500/udp \
+     -d \
+     --privileged \
+     hwdsl2/ipsec-vpn-server
 
 docker logs ipsec-vpn-server
+
+# rabbitmq
+docker run -d \
+     --hostname my-rabbit \
+     --name rabbit \
+     -p 5672:5672 \
+     -p 15672:15672 \
+     -e RABBITMQ_DEFAULT_USER=user \
+     -e RABBITMQ_DEFAULT_PASS=password \
+     -v /var/work/volumes/config/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins \
+     rabbitmq:3-management
 
 
 
