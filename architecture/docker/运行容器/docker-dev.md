@@ -25,8 +25,9 @@ docker run -itd \
     -p 222:22 \
     -p 8080:8080 \
     -p 8443:8443 \
-    -v /var/work:/var/work \
-    -v /usr/lib/maven/apache-maven-3.8.3/repo:/usr/lib/maven/apache-maven-3.8.3/repo \
+    -v /var/work/projects/project-in-action/iot-data-view/src/api/data-api:/var/work \
+    -v /var/work/volumes/config/apache-maven-3.8.3/repo:/usr/lib/maven/apache-maven-3.8.3/repo \
+    -v /var/work/volumes/config/apache-maven-3.8.3/conf:/usr/lib/maven/apache-maven-3.8.3/conf \
     --privileged=true \
     --name java17 \
     callistoctopus/language:U18PSAVSJ17M38-u18psav-java17-maven3.8
