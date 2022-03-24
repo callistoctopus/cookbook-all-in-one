@@ -35,6 +35,13 @@ docker run -itd --rm --privileged=true --name tomcat \
      -v /var/work/projects/client/mobile/browser/html/app:/usr/local/apache-tomcat-8.5.72/webapps/app \
      callistoctopus/server:U18PSAJ11T85-u18psa-java11-tomcat8.5
 
+docker run -itd \
+     -p 80:8080 \
+     -v /var/work/volumes/config/tomcat-9.0/conf:/usr/local/tomcat/conf \
+     -v /var/work/volumes/config/tomcat-9.0/webapps:/usr/local/tomcat/webapps \
+     --name tomcat9 \
+     tomcat:9.0
+
 # nginx
 ## 方法一
 docker run -itd --rm --privileged=true --name nginx \
