@@ -1,0 +1,120 @@
+# https://gitee.com/mirrors/docker-nginx-rtmp
+FROM ubuntu:bionic
+# alpine:3.15.2
+
+ENV NGINX_VERSION 1.20.2
+ENV NGINX_RTMP_VERSION 1.2.1
+ENV FFMPEG_VERSION 5.0
+
+ENV TEMP_DIR /tmp
+ENV NGINX_DIR /etc/nginx
+
+EXPOSE 1935
+EXPOSE 80
+
+RUN mkdir -p ${NGINX_DIR} && \
+  mkdir -p ${TEMP_DIR}
+
+RUN	apt update -y && \
+  apt install \
+  # binutils \
+  # build-base \
+  # ca-certificates \
+  gcc \
+  # libc-dev \
+  # libgcc \
+  make \
+  # musl-dev \
+  openssl \
+  libssl-dev \
+  libpcre3 \
+  libpcre3-dev \
+  wget \
+  # pkgconf \
+  pkg-config \
+  # binutils-libs \
+  zlib1g-dev -y
+
+# Get nginx source.
+RUN cd ${TEMP_DIR} && \
+  wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz && \
+  tar zxf nginx-${NGINX_VERSION}.tar.gz && \
+  rm nginx-${NGINX_VERSION}.tar.gz
+
+# Get nginx-rtmp module.
+RUN cd ${TEMP_DIR} && \
+  wget https://github.com/arut/nginx-rtmp-module/archive/refs/tags/v${NGINX_RTMP_VERSION}.tar.gz && \
+  tar zxf v${NGINX_RTMP_VERSION}.tar.gz && \
+  rm v${NGINX_RTMP_VERSION}.tar.gz
+
+# Compile nginx with nginx-rtmp module.
+RUN cd ${TEMP_DIR}/nginx-${NGINX_VERSION} && \
+  ./configure \
+  --prefix=${NGINX_DIR} \
+  --add-module=${TEMP_DIR}/nginx-rtmp-module-${NGINX_RTMP_VERSION} \
+  # --conf-path=${NGINX_DIR}/nginx.conf \
+  --error-log-path=${NGINX_DIR}/logs/error.log \
+  --http-log-path=${NGINX_DIR}/logs/access.log \
+  --with-debug && \
+  cd ${TEMP_DIR}/nginx-${NGINX_VERSION} && \
+  make && \
+  make install
+
+# # FFmpeg dependencies.
+# RUN apk add --update nasm yasm-dev lame-dev libogg-dev x264-dev libvpx-dev libvorbis-dev x265-dev freetype-dev libass-dev libwebp-dev rtmpdump-dev libtheora-dev opus-dev
+# RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
+# RUN apk add --update fdk-aac-dev
+
+RUN apt install libsdl1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev gfx1.2-dev yasm libx264-dev libfaac-dev libvo-aacenc-dev libmp3lame-dev libfaad-dev \
+        build-essential subversion git-core checkinstall texi2html libtheora-dev libx11-dev libxvidcore-dev zlib1g-dev libopencore-amrnb-dev libopencore-amrwb-dev \
+        nasm lame libogg-dev libvpx-dev libvorbis-dev libfreetype6-dev libass-dev libwebp-dev rtmpdump libtheora-dev libopus-dev -y
+
+# # Get FFmpeg source.
+RUN cd ${TEMP_DIR}/ && \
+  wget http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
+  tar zxf ffmpeg-${FFMPEG_VERSION}.tar.gz && rm ffmpeg-${FFMPEG_VERSION}.tar.gz
+
+RUN apt install librtmp-dev -y
+
+RUN apt install libx265-dev -y
+
+# # Compile ffmpeg.
+RUN cd ${TEMP_DIR}/ffmpeg-${FFMPEG_VERSION} && \
+  ./configure \
+  --enable-version3 \
+  --enable-gpl \
+  --enable-nonfree \
+  --enable-small \
+  --enable-libmp3lame \
+  --enable-libx264 \
+  --enable-libx265 \
+  --enable-libvpx \
+  --enable-libtheora \
+  --enable-libvorbis \
+  --enable-libopus \
+  # --enable-libfdk-aac \
+  --enable-libass \
+  --enable-libwebp \
+  --enable-librtmp \
+  --enable-postproc \
+  # --enable-avresample \
+  --enable-libfreetype \
+  --enable-openssl \
+  --disable-debug && \
+  make && make install && make distclean
+
+# Cleanup.
+RUN rm -rf /var/cache/* /tmp/*
+
+# Add NGINX config and static files.
+# ADD nginx.conf /opt/nginx/nginx.conf
+# ADD static /www/static
+# USER root
+
+WORKDIR ${NGINX_DIR}
+
+COPY ./nginx-start.sh ${NGINX_DIR}
+
+CMD ["sh", "nginx-start.sh"]
+
+# ENTRYPOINT ["./etc/nginx/sbin/nginx"]
