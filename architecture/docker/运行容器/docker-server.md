@@ -131,6 +131,15 @@ test
 http://localhost:8080/players/hls.html
 http://localhost:8080/players/hls_hlsjs.html
 
+docker run --rm -itd \
+  -p 80:80 \
+  -p 1935:1935 \
+  -v /var/work/volumes/config/nginx-rtmp/static:/www/static \
+  -v /var/work/volumes/config/nginx-rtmp/conf:/etc/nginx/conf \
+  --privileged=true \
+  --name nginx-rtmp \
+  test/test:0.0.8
+
 
 
 

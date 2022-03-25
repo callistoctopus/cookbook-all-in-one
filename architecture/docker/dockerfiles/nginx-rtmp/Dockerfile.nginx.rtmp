@@ -78,6 +78,8 @@ RUN apt install librtmp-dev -y
 
 RUN apt install libx265-dev -y
 
+RUN apt install libfdk-aac -y
+
 # # Compile ffmpeg.
 RUN cd ${TEMP_DIR}/ffmpeg-${FFMPEG_VERSION} && \
   ./configure \
@@ -92,7 +94,7 @@ RUN cd ${TEMP_DIR}/ffmpeg-${FFMPEG_VERSION} && \
   --enable-libtheora \
   --enable-libvorbis \
   --enable-libopus \
-  # --enable-libfdk-aac \
+  --enable-libfdk-aac \
   --enable-libass \
   --enable-libwebp \
   --enable-librtmp \
