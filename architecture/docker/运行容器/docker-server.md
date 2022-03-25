@@ -125,6 +125,9 @@ docker run -d \
      --name rtmp
      alqutami/rtmp-hls
 
+rtmp://<server ip>:1935/live
+test
+
 http://localhost:8080/players/hls.html
 http://localhost:8080/players/hls_hlsjs.html
 
