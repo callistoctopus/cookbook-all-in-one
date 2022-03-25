@@ -118,6 +118,16 @@ docker run -d \
      -v /var/work/volumes/config/rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins \
      rabbitmq:3-management
 
+# rtmp 
+docker run -d \
+     -p 1935:1935 \
+     -p 8080:8080 \
+     --name rtmp
+     alqutami/rtmp-hls
+
+http://localhost:8080/players/hls.html
+http://localhost:8080/players/hls_hlsjs.html
+
 
 
 

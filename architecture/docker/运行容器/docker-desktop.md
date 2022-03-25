@@ -37,7 +37,14 @@ User : gui-qi
 Password: password
 
 # kasmweb desktop-deluxe (official)
-docker run -itd --shm-size=512m -p 6901:6901 -u root -e VNC_PW=password kasmweb/desktop-deluxe:1.9.0
+docker run -itd \
+    --shm-size=512m \
+    -p 6901:6901 \
+    -u root \
+    -e VNC_PW=password \
+    --name desktop-deluxe
+    kasmweb/desktop-deluxe:1.10.0
+
 https://<ip>:6901/
 User : kasm_user
 Password: password
