@@ -36,6 +36,7 @@ docker run -itd --rm --privileged=true --name tomcat \
      callistoctopus/server:U18PSAJ11T85-u18psa-java11-tomcat8.5
 
 docker run -itd \
+     --rm \
      -p 80:8080 \
      -v /var/work/volumes/config/tomcat-9.0/conf:/usr/local/tomcat/conf \
      -v /var/work/volumes/config/tomcat-9.0/webapps:/usr/local/tomcat/webapps \
@@ -44,8 +45,18 @@ docker run -itd \
 
 # nginx
 ## 方法一
-docker run -itd --rm --privileged=true --name nginx \
-     -p 224:22 -p 443:443 -p 6061:6061 \
+docker run -itd \
+     --rm --privileged=true \
+     -p 444:443 \
+     -v /var/work/volumes/config/nginx-1.20.2:/etc/nginx \
+     --name nginx \
+     nginx:1.20.2
+
+docker run -itd \
+     --rm --privileged=true \
+     --name nginx \
+     -p 444:443 \
+     -p 6061:6061 \
      -v /var/work/volumes/config/nginx:/etc/nginx \
      callistoctopus/server:U18PSAN-u18psa-nginx
 
