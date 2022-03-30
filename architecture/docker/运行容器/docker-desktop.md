@@ -1,6 +1,6 @@
 # kasmweb dev
 docker run -itd -u root \
-    -p 443:6901 \
+    -p 6901:6901 \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /var/work:/var/work \
     -e VNC_USER=gui-qi \
@@ -42,7 +42,8 @@ docker run -itd \
     -p 6901:6901 \
     -u root \
     -e VNC_PW=password \
-    --name desktop-deluxe
+    -e VNC_RESOLUTION=2560x1440 \
+    --name desktop-deluxe \
     kasmweb/desktop-deluxe:1.10.0
 
 https://<ip>:6901/
