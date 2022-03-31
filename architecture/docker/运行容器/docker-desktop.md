@@ -1,12 +1,12 @@
 # kasmweb dev
 docker run -itd -u root \
-    -p 6901:6901 \
+    -p 443:6901 \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /var/work:/var/work \
     -e VNC_USER=gui-qi \
     -e VNC_PW=password \
     -e VNC_RESOLUTION=2560x1440 \
-    --restart=on-failure --shm-size=512m \
+    --restart=always --shm-size=512m \
     --name kasmweb-util3 \
     callistoctopus/desktop:kasmweb-vscode-edge-office
 
