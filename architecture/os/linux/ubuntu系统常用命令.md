@@ -188,3 +188,6 @@ date -R
 date -s MM/DD/YY
 date -s hh:mm:ss
 hwclock --systohc
+
+
+apt install -y snapd snapcraft
