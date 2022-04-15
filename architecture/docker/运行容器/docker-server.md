@@ -107,6 +107,13 @@ docker run \
 
 docker logs ipsec-vpn-server
 
+# nextcloud
+docker run -d \
+    -p 8080:80 \
+    --restart=always \
+    --name nextcloud \
+    nextcloud
+
 # rabbitmq
 docker run -d \
      --hostname my-rabbit \
