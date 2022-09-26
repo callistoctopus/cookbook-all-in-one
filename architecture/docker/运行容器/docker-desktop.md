@@ -1,3 +1,12 @@
+<!--
+ * @Author: gui-qi
+ * @Date: 2022-09-22 02:56:12
+ * @LastEditors: gui-qi
+ * @LastEditTime: 2022-09-26 07:38:11
+ * @Description: 
+ * 
+ * Copyright (c) 2022, All Rights Reserved. 
+-->
 # kasmweb dev
 docker run -itd -u root \
     -p 443:6901 \
@@ -31,7 +40,7 @@ docker run -itd \
     -e VNC_RESOLUTION=2560x1440 \
     --name desktop-edge \
     kasmweb/edge:1.10.0
-    
+
 https://<ip>:6901/
 User : gui-qi
 Password: password
@@ -39,12 +48,13 @@ Password: password
 # kasmweb desktop-deluxe (official)
 docker run -itd \
     --shm-size=512m \
-    -p 6904:6901 \
+    -v /var/work:/var/work \
+    -p 6901:6901 \
     -u root \
     -e VNC_PW=password \
     -e VNC_RESOLUTION=2560x1440 \
     --name kasmweb-deluxe \
-    kasmweb/desktop-deluxe:1.10.0
+    kasmweb/desktop-deluxe:1.11.0
 
 https://<ip>:6901/
 User : kasm_user
