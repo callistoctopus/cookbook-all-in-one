@@ -109,7 +109,7 @@ docker logs ipsec-vpn-server
 
 # nextcloud
 docker run -d \
-    -p 8080:80 \
+    -p 80:80 \
     --restart=always \
     --name nextcloud \
     nextcloud
