@@ -2,7 +2,7 @@
  * @Author: gui-qi
  * @Date: 2022-09-22 02:56:12
  * @LastEditors: gui-qi
- * @LastEditTime: 2022-09-22 07:35:47
+ * @LastEditTime: 2022-10-10 05:35:40
  * @Description: 
  * 
  * Copyright (c) 2022, All Rights Reserved. 
@@ -17,6 +17,16 @@ docker run -itd \
     --privileged=true \
     --name java8 \
     callistoctopus/language:U18PSAVSJ8M38-u18psav-java8-maven3.8
+
+docker run -itd \
+    -p 220:22 \
+    -p 8080:8080 \
+    -p 8443:8443 \
+    -v /var/work:/var/work \
+    --privileged=true \
+    --name java8 \
+    maven:3.8-jdk-8 \
+    /bin/sh
 
 # java 11
 docker run -itd \
