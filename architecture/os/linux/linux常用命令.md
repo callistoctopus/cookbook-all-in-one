@@ -118,6 +118,8 @@ export JAVA_HOME=/usr/local/jdk1.8.0_181
 export PATH=$PATH:directory
 ***
 
+echo 'export PATH=/home/flutter/bin:$PATH'>>$HOME/.bashrc 
+
 ## 脚本文件
 ```
 #! /usr/bin/env bash  
