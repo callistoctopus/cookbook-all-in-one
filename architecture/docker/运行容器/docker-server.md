@@ -12,9 +12,11 @@ docker run -d -e MYSQL_USER=user -e MYSQL_PASSWORD=pass -e MYSQL_ROOT_PASSWORD=p
 docker run -d \
      -e MYSQL_ROOT_PASSWORD=pass \
      -p 3306:3306 \
+     --restart=always \
      --name mysql8 \
      mysql:8
 
+mysql -u root -p
 create user 'user'@'%' identified with mysql_native_password by 'pass';
 GRANT ALL PRIVILEGES ON *.* TO 'user'@'%';
 FLUSH PRIVILEGES;
