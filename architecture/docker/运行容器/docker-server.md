@@ -39,9 +39,8 @@ docker run -itd --rm --privileged=true --name tomcat \
 
 docker run -itd \
      --rm \
-     -p 80:8080 \
-     -v /var/work/volumes/config/tomcat-9.0/conf:/usr/local/tomcat/conf \
-     -v /var/work/volumes/config/tomcat-9.0/webapps:/usr/local/tomcat/webapps \
+     -p 80:8000 \
+     -v /var/work/git/projects/project-in-action/shouzhang/src/client/build/web:/usr/local/tomcat/webapps/web \
      --name tomcat9 \
      tomcat:9.0
 
@@ -112,7 +111,6 @@ docker logs ipsec-vpn-server
 # nextcloud
 docker run -d \
     -p 80:80 \
-    --restart=always \
     --name nextcloud \
     nextcloud
 

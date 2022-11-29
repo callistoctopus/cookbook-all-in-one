@@ -177,3 +177,6 @@ cd /var/lib/docker/container/[docker id]
 修改hostconfig.json文件
 修改config.v2.json文件
 systemctl start docker
+
+# 同步docker与宿主机的时间
+docker cp /etc/localtime desktop2022:/etc/localtime
